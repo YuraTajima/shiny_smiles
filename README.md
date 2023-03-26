@@ -1,4 +1,4 @@
-# <Shiny_smiles>
+# Shiny_smiles
 
 ## サイト概要　
 色々なオーラルケアグッズの情報がGETできるサイトです。
@@ -19,6 +19,7 @@
 歯ブラシを買いたいとき,歯を白くしたいとき,口臭が気になるとき,人気の商品を知りたいとき,新商品を知りたいとき
 
 ## 設計書
+実装機能リスト https://docs.google.com/spreadsheets/d/1_T3XVlCWPOzXoKVHn15NTfVE6xInB_0TLZRgOPvFxII/edit?usp=sharing
 
 
 ## 開発環境
@@ -30,5 +31,3 @@
 
 ## 使用素材
 未定
-
-##実装機能リスト　https://docs.google.com/spreadsheets/d/1_T3XVlCWPOzXoKVHn15NTfVE6xInB_0TLZRgOPvFxII/edit?usp=sharing
