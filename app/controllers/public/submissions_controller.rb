@@ -1,6 +1,7 @@
 class Public::SubmissionsController < ApplicationController
+  
   def new
-    # @submission = Submission.new
+    @submission = Submission.new
   end
 
   def index
@@ -17,4 +18,5 @@ class Public::SubmissionsController < ApplicationController
 
   def update
   end
+  
 end
