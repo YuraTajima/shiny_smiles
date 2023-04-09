@@ -11,6 +11,36 @@
   </head>
 
   <body>
+    
+    <header class="border-bottom border-3 border-dark">
+      <%= link_to root_path do %>
+      <h1>Shiny Smiles</h1>
+      <% end %>
+      
+      <ul>
+        <% if customer_signed_in? %>
+        
+        <% elsif admin_signed_in? %>
+        <li>
+          <label><%= link_to "投稿", submissions_new_path %></label>
+        </li>
+        
+        <% else %>
+        <li>検索</li>
+        <li>会員登録</li>
+        <li>ログイン</li>
+        <li></li>
+        
+        <% end %>
+      </ul>
+    </header>
+    
     <%= yield %>
+    
+    
   </body>
+  
+  <footer class="border-bottom border-3 border-dark">
+      
+  </footer>
 </html>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   # 顧客用
   # URL /customers/sign_in ...
@@ -13,5 +14,17 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    root to: "homes#top"
+  end
+  
+  #homes
+  root to: "public/homes#top"
+  get "/about" => "public/homes#about"
+  
+  #submissions
+  get "/submissions/new" => "public/submissions#new"
+  post "/submissions" => "public/submissions#create"
+  get "/submissions" => "public/submissions#index"
+  get "/submissions/:id" => "public/submissions#show"
 end
