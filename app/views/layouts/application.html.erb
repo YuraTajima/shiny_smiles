@@ -20,7 +20,7 @@
       <ul>
         <% if customer_signed_in? %>
          <li>
-          <label><%= link_to "ログアウト" destroy_customer_session_path, method: :delete %></label>
+          <label>ログアウト</label>
         </li>
         
         <% elsif admin_signed_in? %>
@@ -28,7 +28,7 @@
           <label><%= link_to "投稿", submissions_new_path %></label>
         </li>
         <li>
-          <label><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></label>
+          <label>ログアウト</label>
         </li>
         
         <% else %>
