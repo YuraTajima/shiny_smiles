@@ -1,2 +1,49 @@
-<h1>Public::Submissions#edit</h1>
-<p>Find me in app/views/public/submissions/edit.html.erb</p>
+<main>
+    
+     <div class="">
+        <h4>カテゴリ</h4>
+        <ul>
+            <li>歯ブラシ</li>
+            <li>歯磨き粉</li>
+            <li>補助的清掃用具</li>
+            <li>洗口液</li>
+            <li>ホワイトニング用品</li>
+            <li>口臭ケア用品</li>
+        </ul>
+    </div>
+    
+    <h3>投稿編集</h3>
+    
+    <div>
+        <%= form_with model: @submissiont, url: '/submissions/:id', method: :patch do |f| %>
+        <form>
+            <ul>
+                <li class="">
+                    <label for="">画像<label>
+                    <%= f.file_field :image, accept: "image/*" %>
+                </li>
+                <li class="">
+                    <label for="">商品名</label>
+                    <%= f.text_field :name %>
+                </li>
+                <li class="">
+                    <label for="">ジャンル</label>
+                    <%= f.select :genre_id, [['歯ブラシ',1], ['歯磨き粉',2], ['補助的清掃用具',3], ['洗口液',4], ['ホワイトニング用品',5], ['口臭ケア用品',6]] %>
+                </li>
+                <li class="">
+                    <label for="">値段</label>
+                    <%= f.text_field :price %>円
+                </li>
+                <li class="">
+                    <label for="">説明</label>
+                    <%= f.text_area :introduction %>
+                </li>
+                <li>
+                    <input id="button" type="submit" name="button" value="投稿する">
+                </li>
+            </ul>
+        </form>
+        <% end %>
+    </div>
+    
+</main>

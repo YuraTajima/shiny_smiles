@@ -5,6 +5,7 @@ class Public::SubmissionsController < ApplicationController
   end
 
   def index
+    @submissions = Submission.all
   end
 
   def show
@@ -14,9 +15,19 @@ class Public::SubmissionsController < ApplicationController
   end
 
   def create
+    @submission = Submission.new(submission_params)
+    # @submission.user_id = current_user.id
+    @submission.save
+    redirect_to submissions_path
   end
 
   def update
+  end
+  
+   private
+
+  def submission_params
+    params.require(:submission).permit(:name, :image, :genre_id, :price, :introduction)
   end
   
 end
