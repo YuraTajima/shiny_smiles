@@ -1,19 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'favorites/new'
-    get 'favorites/index'
-    get 'favorites/show'
-  end
-  namespace :public do
-    get 'genres/new'
-    get 'genres/index'
-    get 'genres/show'
-  end
-  namespace :public do
-    get 'reviews/new'
-    get 'reviews/index'
-    get 'reviews/show'
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   # 顧客用
@@ -39,10 +24,10 @@ Rails.application.routes.draw do
   
   #submissions
   get "/submissions/new" => "public/submissions#new"
-  post "/submissions" => "public/submissions#create"
   get "/submissions" => "public/submissions#index"
   get "/submissions/:id" => "public/submissions#show"
   get "/submissions/:id/edit" => "public/submissions#edit"
+  post "/submissions" => "public/submissions#create"
   patch "/submissions/:id" => "public/submissions#update"
   
   #reviews
