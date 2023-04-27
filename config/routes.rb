@@ -1,38 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'favorites/index'
-    get 'favorites/show'
-    get 'favorites/edit'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/show'
-    get 'genres/edit'
-    get 'genres/new'
-  end
-  namespace :admin do
-    get 'reviews/index'
-    get 'reviews/show'
-    get 'reviews/edit'
-  end
-  namespace :admin do
-    get 'submissions/index'
-    get 'submissions/show'
-    get 'submissions/edit'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :public do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   # 顧客用
@@ -49,6 +16,11 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
+    resources :customers, only: [:index, :new, :create, :show, :edit, :update]
+    resources :submissions, only: [:index, :new, :create, :show, :edit, :update]
+    resources :reviews, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :new, :create, :show, :edit, :update]
+    resources :favorites, only: [:index, :new, :create, :show, :edit, :update]
     root to: "homes#top"
   end
   
