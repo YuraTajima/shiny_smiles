@@ -15,7 +15,7 @@
     <h3>投稿機能</h3>
     
     <div>
-        <%= form_with model: @submissiont, url: '/submissions', method: :post do |f| %>
+        <%= form_with model: @submission, url: '/submissions', method: :post do |f| %>
         <form>
             <ul>
                 <li class="">
@@ -39,7 +39,7 @@
                     <%= f.text_area :introduction %>
                 </li>
                 <li>
-                    <input id="button" type="submit" name="button" value="投稿する">
+                    <%= f.submit '投稿' %>
                 </li>
             </ul>
         </form>

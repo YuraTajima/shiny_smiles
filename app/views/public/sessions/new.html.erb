@@ -1,4 +1,5 @@
-<h2>ログイン</h2>
+<main>
+  <h2>ログイン</h2>
 
   <%= form_with model: @customer, url: customer_session_path do |f| %>
   <div class="field">
@@ -14,6 +15,7 @@
   <div class="actions">
     <%= f.submit "ログイン" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "public/shared/links" %>
+  <%= render "public/shared/links" %>
+</main>

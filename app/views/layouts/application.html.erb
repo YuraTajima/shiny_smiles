@@ -25,10 +25,10 @@
         
         <% elsif admin_signed_in? %>
         <li>
-          <label><%= link_to "投稿", submissions_new_path %></label>
+          <label><%= link_to "投稿", new_submission_path %></label>
         </li>
         <li>
-          <label>ログアウト</label>
+          <label><%= link_to "ログアウト",  destroy_admin_session_path, method: :delete %></label>
         </li>
         
         <% else %>
