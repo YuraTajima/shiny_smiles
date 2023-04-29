@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :new, :create, :show, :edit, :update]
     resources :submissions, only: [:index, :new, :create, :show, :edit, :update]
     resources :reviews, only: [:index, :new, :create, :show, :edit, :update]
-    resources :genres, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
     resources :favorites, only: [:index, :new, :create, :show, :edit, :update]
     root to: "homes#top"
   end
