@@ -1,6 +1,6 @@
 <main>
     
-     <div class="">
+    <div class="">
         <h4>カテゴリ</h4>
         <ul>
             <li>歯ブラシ</li>
@@ -15,9 +15,9 @@
     <h3>投稿機能</h3>
     
     <div>
-        <%= form_with model: @submission, url: '/submissions', method: :post do |f| %>
         <form>
             <ul>
+                <%= form_with model: @submission, url: '/submissions', method: :post do |f| %>
                 <li class="">
                     <label for="">画像<label>
                     <%= f.file_field :image, accept: "image/*" %>
@@ -41,9 +41,9 @@
                 <li>
                     <%= f.submit '投稿' %>
                 </li>
+                <% end %>
             </ul>
         </form>
-        <% end %>
     </div>
     
 </main>

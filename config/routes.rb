@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :customers, only: [:index, :new, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :create, :show, :edit, :update]
     resources :submissions, only: [:index, :new, :create, :show, :edit, :update]
     resources :reviews, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -30,10 +30,10 @@ Rails.application.routes.draw do
   
   #submissions
   get "/submissions/new" => "public/submissions#new", as: "new_submission"
-  post "/submissions" => "public/submissions#create", as: "create_submission"
   get "/submissions" => "public/submissions#index", as: "index_submission"
   get "/submissions/:id" => "public/submissions#show", as: "show_submission"
   get "/submissions/:id/edit" => "public/submissions#edit", as: "edit_submission"
+  post "/submissions" => "public/submissions#create", as: "create_submission"
   patch "/submissions/:id" => "public/submissions#update", as: "update_submission"
   
   

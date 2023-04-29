@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2023_04_15_111511) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "submissions_id", null: false
+    t.integer "submission_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2023_04_15_111511) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "submissions_id", null: false
+    t.integer "submission_id", null: false
     t.integer "star", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2023_04_15_111511) do
 
   create_table "submissions", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "genres_id", null: false
+    t.integer "genre_id", null: false
     t.string "name", null: false
     t.integer "price", null: false
     t.text "introduction", null: false

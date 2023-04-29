@@ -17,8 +17,12 @@ class Public::SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
     # @submission.user_id = current_user.id
-    @submission.save
-    redirect_to submissions_path
+    if @submission.save
+      redirect_to index_submission_path
+    else
+      @submissions = Submission.all
+      render :new
+    end
   end
 
   def update
