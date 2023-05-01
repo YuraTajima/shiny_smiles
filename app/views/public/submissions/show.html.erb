@@ -13,13 +13,56 @@
     </div>
     
     <h3>投稿詳細</h3>
-    
-    <div>
-        <p>画像</p>
-        <% if @list.image.attached? %>
-          <%= image_tag @list.image, size: "300x300" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "300x300" %>
-        <% end %>
+ 
+     <div>
+      <ul>
+        <li class="">
+          <label for="">画像</label>
+          <%= image_tag @submission.get_image %>
+        </li>
+        
+        <li class="">
+          <label for="">商品名</label>
+          <% @submission.name %>
+        </li>
+        
+        <li class="">
+          <label for="">ジャンル</label>
+          <% if @submission.genre_id == 1 %>
+            歯ブラシ
+          <% elsif @submission.genre_id == 2 %>
+            歯磨き粉
+          <% elsif @submission.genre_id == 3 %>
+            補助的清掃用具
+          <% elsif @submission.genre_id == 4 %>
+            洗口液
+          <% elsif @submission.genre_id == 5 %>
+            ホワイトニング用品
+          <% else @submission.genre_id == 6 %>
+            口臭ケア用品
+          <% end %>
+        </li>
+        
+        <li class="">
+          <label for="">値段</label>
+          <% @submission.price %>
+        </li>
+        
+        <li class="">
+          <label for="">説明</label>
+          <% @submission.introduction %>
+        </li>
+        
+        <li class="">
+          <label>投稿ユーザー画像</label></li>
+          
+        <li class="">
+          <label>ユーザーネーム</label>
+        </li>
+        
+        <li class="">
+          <%= @submission.created_at.strftime('%Y/%m/%d') %>
+        </li>
+      </ul>
     </div>
 </main>
