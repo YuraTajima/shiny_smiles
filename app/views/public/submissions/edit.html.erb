@@ -15,8 +15,7 @@
     <h3>投稿編集</h3>
     
     <div>
-        <%= form_with model: @submissiont, url: '/submissions/:id', method: :patch do |f| %>
-        <form>
+        <%= form_with model: @submission, url: update_submission_path do |f| %>
             <ul>
                 <li class="">
                     <label for="">画像<label>
@@ -39,10 +38,9 @@
                     <%= f.text_area :introduction %>
                 </li>
                 <li>
-                    <input id="button" type="submit" name="button" value="投稿する">
+                    <%= f.submit '編集する' %>
                 </li>
             </ul>
-        </form>
         <% end %>
     </div>
     

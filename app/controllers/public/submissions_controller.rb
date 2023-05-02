@@ -9,16 +9,16 @@ class Public::SubmissionsController < ApplicationController
   end
 
   def show
-    @submission = Submissio.find(params[:id])
+    @submission = Submission.find(params[:id])
   end
 
   def edit
-    @submission = Submissio.find(params[:id])
+    @submission = Submission.find(params[:id])
   end
 
   def create
     @submission = Submission.new(submission_params)
-    @submission.user_id = current_user.id
+    @submission.customer_id = current_customer.id
     @submission.save
     redirect_to index_submission_path
   end
@@ -28,8 +28,14 @@ class Public::SubmissionsController < ApplicationController
     if @submission.update(submission_params)
       redirect_to show_submission_path(@submission.id)
     else
-      render :show
+      render :edit
     end
+  end
+  
+  def destroy
+    @submission = Submission.find(params[:id])
+    @submission.destroy
+    redirect_to index_submission_path
   end
   
    private

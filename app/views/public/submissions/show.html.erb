@@ -23,7 +23,7 @@
         
         <li class="">
           <label for="">商品名</label>
-          <% @submission.name %>
+          <%= @submission.name %>
         </li>
         
         <li class="">
@@ -45,12 +45,16 @@
         
         <li class="">
           <label for="">値段</label>
-          <% @submission.price %>
+          <%= @submission.price %>
         </li>
         
         <li class="">
           <label for="">説明</label>
-          <% @submission.introduction %>
+          <%= @submission.introduction %>
+        </li>
+        
+        <li>
+          <%= link_to "編集する", edit_submission_path(@submission.id) %>,<%= link_to "削除する", destroy_submission_path(@submission.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
         </li>
         
         <li class="">

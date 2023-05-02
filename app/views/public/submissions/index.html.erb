@@ -24,7 +24,7 @@
         
         <li class="">
           <label for="">商品名</label>
-          <% submission.name %>
+          <%= submission.name %>
         </li>
         
         <li class="">
@@ -46,12 +46,16 @@
         
         <li class="">
           <label for="">値段</label>
-          <% submission.price %>
+          <%= submission.price %>
         </li>
         
         <li class="">
           <label for="">説明</label>
-          <% submission.introduction %>
+          <%= submission.introduction %>
+        </li>
+        
+        <li>
+          <%= link_to "詳細", show_submission_path(submission.id) %>
         </li>
       </ul>
       <% end %>

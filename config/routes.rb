@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get "/submissions/:id/edit" => "public/submissions#edit", as: "edit_submission"
   post "/submissions" => "public/submissions#create", as: "create_submission"
   patch "/submissions/:id" => "public/submissions#update", as: "update_submission"
-  
+  delete "/submissions/:id" => "public/submissions#destroy", as: "destroy_submission"
   
   #reviews
   
