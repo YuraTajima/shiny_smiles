@@ -1,4 +1,5 @@
 class Public::ReviewsController < ApplicationController
+  
   def new
   end
 
@@ -6,5 +7,11 @@ class Public::ReviewsController < ApplicationController
   end
 
   def show
+  end
+  
+  private
+
+  def reiew_params
+    params.require(:review).permit(:comment, :star)
   end
 end

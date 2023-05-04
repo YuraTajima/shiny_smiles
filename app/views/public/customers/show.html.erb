@@ -1,8 +1,7 @@
 <main>
-    <div>
-        <h3>マイページ</h3>
-    </div>
     
+    <h3>マイページ</h3>
+
     <div>
         <%= image_tag @customer.get_profile_image(100,100) %>
         <ul>
@@ -16,6 +15,26 @@
             </li>
         </ul>
         <p><%= link_to "プロフィール編集", edit_customer_path %></p>
+    </div>
+    
+    
+    <h3>投稿履歴</h3>
+
+    <div>
+      <% @submissions.each do |submission| %>
+        <ul>
+            <li>
+                <%= image_tag submission.get_image(400,400) %>
+            </li>
+            <li>
+                <label for="">商品名</label>
+                <%= submission.name %>
+            </li>
+            <li>
+                <%= submission.created_at.strftime('%Y/%m/%d') %>
+            </li>
+        </ul>
+      <% end %>
     </div>
 
 </main>

@@ -38,7 +38,7 @@ class Public::SubmissionsController < ApplicationController
     redirect_to index_submission_path
   end
   
-   private
+  private
 
   def submission_params
     params.require(:submission).permit(:name, :image, :genre_id, :price, :introduction)

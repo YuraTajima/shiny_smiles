@@ -20,7 +20,7 @@
       <ul>
         <% if customer_signed_in? %>
         <li>
-          <%= link_to "投稿", new_submission_path %>
+          <%= link_to "投稿一覧", index_submission_path %>
         </li>
         <li><%= link_to 'マイページ', show_customer_path(current_customer.id) %></li>
         <li>

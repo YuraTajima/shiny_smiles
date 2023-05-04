@@ -1,12 +1,8 @@
 class Public::CustomersController < ApplicationController
-  
-  def index
-    @customer = current_customer
-    @submissions = @customer.submissions
-  end
 
   def show
     @customer = current_customer
+    @submissions = @customer.submissions
   end
 
   def edit
@@ -21,7 +17,6 @@ class Public::CustomersController < ApplicationController
       render :edit
     end
   end
-
 
   private
 

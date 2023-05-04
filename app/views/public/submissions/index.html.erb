@@ -1,6 +1,6 @@
 <main>
     
-     <div class="">
+    <div class="">
         <h4>カテゴリ</h4>
         <ul>
             <li>歯ブラシ</li>
@@ -13,6 +13,10 @@
     </div>
     
     <h3>投稿一覧</h3>
+    
+    <%= link_to new_submission_path do  %>
+      <button type="button" class="btn btn-light rounded-circle p-0 shadow" style="width:2rem;height:2rem;">＋</button>
+    <% end %>
     
     <div>
       <% @submissions.each do |submission| %>
