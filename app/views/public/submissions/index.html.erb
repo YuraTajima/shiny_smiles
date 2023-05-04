@@ -18,8 +18,7 @@
       <% @submissions.each do |submission| %>
       <ul>
         <li class="">
-          <label for="">画像</label>
-          <%= image_tag submission.get_image %>
+          <%= image_tag submission.get_image(400,400) %>
         </li>
         
         <li class="">
@@ -42,16 +41,6 @@
           <% else submission.genre_id == 6 %>
             口臭ケア用品
           <% end %>
-        </li>
-        
-        <li class="">
-          <label for="">値段</label>
-          <%= submission.price %>
-        </li>
-        
-        <li class="">
-          <label for="">説明</label>
-          <%= submission.introduction %>
         </li>
         
         <li>

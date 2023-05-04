@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   
   #homes
   root to: "public/homes#top"
-  get "/about" => "public/homes#about"
   
   #submissions
   get "/submissions/new" => "public/submissions#new", as: "new_submission"
@@ -42,4 +41,10 @@ Rails.application.routes.draw do
   #genres
   
   #favorites
+  
+  #customers
+  get "/customers/:id" => "public/customers#show", as: "show_customer"
+  get "/customers/:id/edit" => "public/customers#edit", as: "edit_customer"
+  patch "/customers/:id" => "public/customers#update", as: "update_customer"
+  
 end

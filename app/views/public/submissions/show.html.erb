@@ -17,8 +17,7 @@
      <div>
       <ul>
         <li class="">
-          <label for="">画像</label>
-          <%= image_tag @submission.get_image %>
+          <%= image_tag @submission.get_image(400,400) %>
         </li>
         
         <li class="">
@@ -54,14 +53,18 @@
         </li>
         
         <li>
-          <%= link_to "編集する", edit_submission_path(@submission.id) %>,<%= link_to "削除する", destroy_submission_path(@submission.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <% if @submission.customer == current_customer %>
+          <%= link_to "編集する", edit_submission_path(@submission.id) %>,
+          <%= link_to "削除する", destroy_submission_path(@submission.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
         </li>
         
         <li class="">
-          <label>投稿ユーザー画像</label></li>
+          <%= image_tag @submission.customer.get_profile_image(100,100) %>
+        </li>
           
         <li class="">
-          <label>ユーザーネーム</label>
+          <%= @submission.customer.name %>
         </li>
         
         <li class="">
