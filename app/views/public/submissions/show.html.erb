@@ -75,11 +75,13 @@
     
   
 <!--コメント-->
-  <% @reviews.each do |review| %>
+  <% @submission.reviews.each do |review| %>
     <div>
-      <p>内容:<%= review.comment %></p>
+      <p><%= review.customer.name %></p>
+      <p>コメント:<%= review.comment %></p>
+      <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
       <p>評価 :<%= review.star %>点</p>
-      <div id="star-rate<%= reviewt.id %>"></div>    
+      <div id="star-rate<%= review.id %>"></div>    
       <script>
         $('#star-rate<%= review.id %>').raty({
           size      : 36,
@@ -90,11 +92,12 @@
           score: <%= review.star %>,
         });
       </script>
+      <%= link_to "削除", submission_review_path(review.submission, review), method: :delete %>
     </div>
   <% end %>
 
 <!--コメント投稿-->
-  <%= form_for [@submission, @review] do |f| %>
+  <%= form_with model: [@submission, @review] do |f| %>
     <div>
       <div>
         <%= f.text_field :comment %>

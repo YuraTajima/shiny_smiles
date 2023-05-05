@@ -17,6 +17,11 @@ class Public::ReviewsController < ApplicationController
     redirect_to show_submission_path
   end
   
+  def destroy
+    Review.find(params[:id]).destroy
+    redirect_to show_submission_path(params[:submission_id])
+  end
+  
   private
 
   def review_params

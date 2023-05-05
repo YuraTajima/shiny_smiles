@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   
   #reviews
   resources :submissions, only: [:index, :show, :create] do
-    resources :reviews, only: [:create]
+    resources :reviews, only: [:create, :destroy]
   end
   
   #genres
