@@ -10,14 +10,16 @@ class Public::ReviewsController < ApplicationController
   end
   
   def create
-    @review = Review.new(review_params)
-    @review.customer_id = current_customer.id
+    @submission = Submission.find(params[:submission_id])
+    @review = current_customer.reviews.new(review_params)
+    @review.submission_id = submission.id
     @review.save
+    redirect_to show_submission_path
   end
   
   private
 
-  def reiew_params
+  def review_params
     params.require(:review).permit(:comment, :star)
   end
 end

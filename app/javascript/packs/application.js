@@ -13,3 +13,5 @@ Turbolinks.start()
 ActiveStorage.start()
 
 window.$ = window.jQuery = require('jquery');
+
+require("../jquery_raty")
