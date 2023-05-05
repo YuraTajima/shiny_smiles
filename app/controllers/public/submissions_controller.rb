@@ -10,6 +10,8 @@ class Public::SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find(params[:id])
+    @reviews = @submission.reviews
+    @review = Review.new
   end
 
   def edit

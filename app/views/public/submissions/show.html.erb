@@ -72,4 +72,37 @@
         </li>
       </ul>
     </div>
+    
+    <div>
+      
+      <% @reviews.each do |c| %>
+      <div>
+        
+        <script>
+              $('#star-rate<%= @submission.id %>').empty();
+              $('#star-rate<%= @submission.id%>').raty({
+                 size      : 36,
+                 starOff   : '<%= asset_path('star-off.png') %>',
+                 starOn    : '<%= asset_path('star-on.png') %>',
+                 half      : false,
+                 readOnly: true,
+                 score: <%= @submission.star %>,
+               });
+             </script>
+          </td>
+        
+        <%= @submission.customer.id %>"><%= c.customer.name %>
+        <%= c.comment %>
+        <hr>
+      </div>
+      <% end %>
+
+      <%= form_for [@submission, @review] do |f| %>
+      <%= f.text_field :comment %>
+      <br>
+      <%= f.submit 'コメントする' %>
+      <% end %>
+    </div>
 </main>
+
+

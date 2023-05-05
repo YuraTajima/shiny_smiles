@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   delete "/submissions/:id" => "public/submissions#destroy", as: "destroy_submission"
   
   #reviews
+  resources :submissions, only: [:index, :show, :create] do
+    resources :reviews, only: [:create]
+  end
   
   #genres
   
