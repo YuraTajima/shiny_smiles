@@ -1,16 +1,17 @@
 <main>
     
-    <div class="">
-        <h4>カテゴリ</h4>
+    <div>
+      <h4>カテゴリ</h4>
         <ul>
-            <li>歯ブラシ</li>
-            <li>歯磨き粉</li>
-            <li>補助的清掃用具</li>
-            <li>洗口液</li>
-            <li>ホワイトニング用品</li>
-            <li>口臭ケア用品</li>
+            <li><%= link_to "歯ブラシ", submission_genre1_path %></li>
+            <li><%= link_to "歯磨き粉", submission_genre2_path %></li>
+            <li><%= link_to "補助的清掃用具", submission_genre3_path %></li>
+            <li><%= link_to "洗口液", submission_genre4_path %></li>
+            <li><%= link_to "ホワイトニング用品", submission_genre5_path %></li>
+            <li><%= link_to "口臭ケア用品", submission_genre6_path %></li>
         </ul>
     </div>
+    
     
     <h3>投稿一覧</h3>
     
@@ -22,14 +23,14 @@
       <% @submissions.each do |submission| %>
       <ul>
         <li class="">
-          <%= image_tag submission.get_image(400,400) %>
-        </li>
-        
-        <li class="">
           <label for="">商品名</label>
           <%= submission.name %>
         </li>
         
+        <li class="">
+          <%= image_tag submission.get_image(400,400) %>
+        </li>
+
         <li class="">
           <label for="">ジャンル</label>
           <% if submission.genre_id == 1 %>
@@ -55,3 +56,4 @@
     </div>
     
 </main>
+
