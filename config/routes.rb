@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
   
   #homes
-  root to: "public/homes#top"
+  root to: "public/submissions#top"
   
   #genre
   #歯ブラシ

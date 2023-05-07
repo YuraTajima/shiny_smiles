@@ -60,3 +60,5 @@ gem 'devise'
 gem 'pry-byebug'
 
 gem 'jquery-rails'
+
+gem 'kaminari', '~> 0.17.0'

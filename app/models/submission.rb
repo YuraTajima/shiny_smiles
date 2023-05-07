@@ -4,6 +4,7 @@ class Submission < ApplicationRecord
     
     has_many :reviews, dependent: :destroy
     has_many :favorites, dependent: :destroy
+    has_many :favorited_customers, through: :favorites, source: :customer
     
     has_one_attached :image
     

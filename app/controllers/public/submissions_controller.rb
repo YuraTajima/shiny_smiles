@@ -13,6 +13,11 @@ class Public::SubmissionsController < ApplicationController
     @reviews = @submission.reviews
     @review = Review.new
   end
+  
+  def top
+    submissions = Submission.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}
+    @submissions = Kaminari.paginate_array(submissions).page(params[:page]).per(3)
+  end
 
   def edit
     @submission = Submission.find(params[:id])
