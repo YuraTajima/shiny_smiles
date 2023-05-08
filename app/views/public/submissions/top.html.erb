@@ -7,42 +7,44 @@
     
     
     <div class="col-9">
-        <h3>ランキング</h3>
-        
+        <div class="my-3">
+        <h3 class="pb-3 text-secondary">ランキング</h3>
         <div>
-         <% @submissions.each do |submission| %>
-         <ul>
-           <li class="">
-             <label for="">商品名</label>
-             <%= submission.name %>
-           </li>
-           
-           <li class="">
-             <%= image_tag submission.get_image(400,400) %>
-           </li>
-   
-           <li class="">
-             <label for="">ジャンル</label>
-             <% if submission.genre_id == 1 %>
-               歯ブラシ
-             <% elsif submission.genre_id == 2 %>
-               歯磨き粉
-             <% elsif submission.genre_id == 3 %>
-               補助的清掃用具
-             <% elsif submission.genre_id == 4 %>
-               洗口液
-             <% elsif submission.genre_id == 5 %>
-               ホワイトニング用品
-             <% else submission.genre_id == 6 %>
-               口臭ケア用品
-             <% end %>
-           </li>
-           
-           <li>
-             <%= link_to "詳細", show_submission_path(submission.id) %>
-           </li>
-         </ul>
-         <% end %>
+        
+        <div class="">   
+            <% @submissions.each do |submission| %>
+            <ul>
+              <li class="">
+                <label for="">商品名</label>
+                <%= submission.name %>
+              </li>
+              
+              <li class="">
+                <%= image_tag submission.get_image(400,400) %>
+              </li>
+      
+              <li class="">
+                <label for="">ジャンル</label>
+                <% if submission.genre_id == 1 %>
+                  歯ブラシ
+                <% elsif submission.genre_id == 2 %>
+                  歯磨き粉
+                <% elsif submission.genre_id == 3 %>
+                  補助的清掃用具
+                <% elsif submission.genre_id == 4 %>
+                  洗口液
+                <% elsif submission.genre_id == 5 %>
+                  ホワイトニング用品
+                <% else submission.genre_id == 6 %>
+                  口臭ケア用品
+                <% end %>
+              </li>
+              
+              <li>
+                <%= link_to "詳細", show_submission_path(submission.id) %>
+              </li>
+            </ul>
+            <% end %>
         </div>
     </div>
     
