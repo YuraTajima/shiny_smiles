@@ -6,48 +6,92 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+    
+  <header class="border-bottom border-3 border-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+        <div class="navbar-brand">
+          <%= link_to root_path do %>
+            <button type="button" class="btn btn-light">
+              <h1>Shiny Smiles</h1>
+            </button>
+          <% end %>
+        </div>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+          <ul class="navbar-nav mr-auto">
+            
+            <% if customer_signed_in? %>
+            
+              <li class="nav-item my-1 mx-1">
+                <%= link_to index_submission_path do %>
+                <button type="button" class="btn btn-outline-secondary">投稿一覧</button>
+                <% end %>
+              </li>
+              <li class="nav-item my-1 mx-1">
+                <%= link_to show_customer_path(current_customer.id) do %>
+                <button type="button" class="btn btn-outline-secondary">マイページ</button>
+                <% end %>
+              </li>
+              <li class="nav-item my-1 mx-1">
+                <%= link_to destroy_customer_session_path, method: :delete do %>
+                <button type="button" class="btn btn-outline-secondary">ログアウト</button>
+                <% end %>
+              </li>
+              
+            <% elsif admin_signed_in? %>
+            
+              <li class="nav-item my-1 mx-1">
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                <button type="button" class="btn btn-outline-secondary">ログアウト</button>
+                <% end %>
+              </li>
+            
+            <% else %>
+            
+              <li class="nav-item my-1 mx-1">
+                <button type="button" class="btn btn-outline-secondary">検索</button>
+              </li>
+              <li class="nav-item my-1 mx-1">
+                <%= link_to new_customer_registration_path do %>
+                <button type="button" class="btn btn-outline-secondary">会員登録</button>
+                <% end %>
+              </li>
+              <li class="nav-item my-1 mx-1">
+                <%= link_to new_customer_session_path do %>
+                <button type="button" class="btn btn-outline-secondary">ログイン</button>
+                <% end %>
+              </li>
+              <li class="nav-item my-1 mx-1"></li>
+              
+            <% end %>
+            
+          </ul>
+        </div>
+        
+      </nav>
+    </div>
+  </header>
+    
   <body>
-    
-    <header class="border-bottom border-3 border-dark">
-      <%= link_to root_path do %>
-      <h1>Shiny Smiles</h1>
-      <% end %>
-      
-      <ul>
-        <% if customer_signed_in? %>
-        <li>
-          <%= link_to "投稿一覧", index_submission_path %>
-        </li>
-        <li><%= link_to 'マイページ', show_customer_path(current_customer.id) %></li>
-        <li>
-          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-        </li>
-        
-        <% elsif admin_signed_in? %>
-        <li>
-          <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete %>
-        </li>
-        
-        <% else %>
-        <li>検索</li>
-        <li><%= link_to "会員登録", new_customer_registration_path %></li>
-        <li><%= link_to "ログイン", new_customer_session_path %></li>
-        <li></li>
-        
-        <% end %>
-      </ul>
-    </header>
-    
+    <div class="container">
     <%= yield %>
-    
-    
+    </div>
   </body>
   
-  <footer class="border-bottom border-3 border-dark">
-      
+  <footer class="border-top border-3 border-dark">
+    <div class="container">
+      footer
+    </div>
   </footer>
 </html>

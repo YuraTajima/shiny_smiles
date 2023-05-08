@@ -1,147 +1,141 @@
-<main>
+<div class="row">
     
-    <div>
-      <h4>カテゴリ</h4>
-        <ul>
-            <li><%= link_to "歯ブラシ", submission_genre1_path %></li>
-            <li><%= link_to "歯磨き粉", submission_genre2_path %></li>
-            <li><%= link_to "補助的清掃用具", submission_genre3_path %></li>
-            <li><%= link_to "洗口液", submission_genre4_path %></li>
-            <li><%= link_to "ホワイトニング用品", submission_genre5_path %></li>
-            <li><%= link_to "口臭ケア用品", submission_genre6_path %></li>
-        </ul>
+    <!--カテゴリ-->
+    <div class="col-3">
+        <%= render 'category' %>
     </div>
     
     
-  <h3>投稿詳細</h3>
+    <div class="col-9">
+        <h3>投稿詳細</h3>
  
-  <div>
-    <ul>
-      <li class="">
-        <label for="">商品名</label>
-        <%= @submission.name %>
-      </li>
+        <div>
+          <ul>
+            <li class="">
+              <label for="">商品名</label>
+              <%= @submission.name %>
+            </li>
+            
+            <li>
+              <% if @submission.favorited_by?(current_customer) %>
+                <p>
+                  <%= link_to submission_favorites_path(@submission), method: :delete do %>
+                    ♥<%= @submission.favorites.count %>
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to submission_favorites_path(@submission), method: :post do %>
+                    ♡<%= @submission.favorites.count %>
+                  <% end %>
+                </p>
+              <% end %>
+            </li>
+            
+            <li class="">
+              <%= image_tag @submission.get_image(400,400) %>
+            </li>
+            
+            <li class="">
+              <label for="">ジャンル</label>
+              <% if @submission.genre_id == 1 %>
+                歯ブラシ
+              <% elsif @submission.genre_id == 2 %>
+                歯磨き粉
+              <% elsif @submission.genre_id == 3 %>
+                補助的清掃用具
+              <% elsif @submission.genre_id == 4 %>
+                洗口液
+              <% elsif @submission.genre_id == 5 %>
+                ホワイトニング用品
+              <% else @submission.genre_id == 6 %>
+                口臭ケア用品
+              <% end %>
+            </li>
+            
+            <li class="">
+              <label for="">値段</label>
+              <%= @submission.price %>
+            </li>
+            
+            <li class="">
+              <label for="">説明</label>
+              <%= @submission.introduction %>
+            </li>
+            
+            <li>
+              <% if @submission.customer == current_customer %>
+              <%= link_to "編集する", edit_submission_path(@submission.id) %>,
+              <%= link_to "削除する", destroy_submission_path(@submission.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+              <% end %>
+            </li>
       
-      <li>
-        <% if @submission.favorited_by?(current_customer) %>
-          <p>
-            <%= link_to submission_favorites_path(@submission), method: :delete do %>
-              ♥<%= @submission.favorites.count %>
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to submission_favorites_path(@submission), method: :post do %>
-              ♡<%= @submission.favorites.count %>
-            <% end %>
-          </p>
-        <% end %>
-      </li>
-      
-      <li class="">
-        <%= image_tag @submission.get_image(400,400) %>
-      </li>
-      
-      <li class="">
-        <label for="">ジャンル</label>
-        <% if @submission.genre_id == 1 %>
-          歯ブラシ
-        <% elsif @submission.genre_id == 2 %>
-          歯磨き粉
-        <% elsif @submission.genre_id == 3 %>
-          補助的清掃用具
-        <% elsif @submission.genre_id == 4 %>
-          洗口液
-        <% elsif @submission.genre_id == 5 %>
-          ホワイトニング用品
-        <% else @submission.genre_id == 6 %>
-          口臭ケア用品
-        <% end %>
-      </li>
-      
-      <li class="">
-        <label for="">値段</label>
-        <%= @submission.price %>
-      </li>
-      
-      <li class="">
-        <label for="">説明</label>
-        <%= @submission.introduction %>
-      </li>
-      
-      <li>
-        <% if @submission.customer == current_customer %>
-        <%= link_to "編集する", edit_submission_path(@submission.id) %>,
-        <%= link_to "削除する", destroy_submission_path(@submission.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-        <% end %>
-      </li>
-
-      <li class="">
-        <%= image_tag @submission.customer.get_profile_image(100,100) %>
-      </li>
+            <li class="">
+              <%= image_tag @submission.customer.get_profile_image(100,100) %>
+            </li>
+              
+            <li class="">
+              <%= @submission.customer.name %>
+            </li>
+            
+            <li class="">
+              <%= @submission.created_at.strftime('%Y/%m/%d') %>
+            </li>
+          </ul>
+        </div>
+          
         
-      <li class="">
-        <%= @submission.customer.name %>
-      </li>
+      <!--コメント-->
+        <% @submission.reviews.each do |review| %>
+          <div>
+            <p><%= review.customer.name %></p>
+            <p>コメント:<%= review.comment %></p>
+            <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
+            <p>評価 :<%= review.star %>点</p>
+            <div id="star-rate<%= review.id %>"></div>    
+            <script>
+              $('#star-rate<%= review.id %>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                half      : false,
+                readOnly: true,
+                score: <%= review.star %>,
+              });
+            </script>
+            <%= link_to "削除", submission_review_path(review.submission, review), method: :delete %>
+          </div>
+        <% end %>
       
-      <li class="">
-        <%= @submission.created_at.strftime('%Y/%m/%d') %>
-      </li>
-    </ul>
-  </div>
+      <!--コメント投稿-->
+        <%= form_with model: [@submission, @review] do |f| %>
+          <div>
+            <div>
+              <%= f.text_field :comment %>
+            </div>
+      
+            <div>
+              <%= f.submit 'コメントする' %>
+            </div>
+      
+            <div class="form-group row" id="star">
+              <label>評価：</label>
+              <%= f.hidden_field :star, id: :review_star %>
+            </div>
+      
+        <!-- 評価javascript -->
+            <script>
+              $('#star').raty({
+                size     : 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+      
+                scoreName: 'comment[star]',
+                half: false,
+              });
+            </script>  
+          </div>
+        <% end %>
+    </div>
     
-  
-<!--コメント-->
-  <% @submission.reviews.each do |review| %>
-    <div>
-      <p><%= review.customer.name %></p>
-      <p>コメント:<%= review.comment %></p>
-      <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
-      <p>評価 :<%= review.star %>点</p>
-      <div id="star-rate<%= review.id %>"></div>    
-      <script>
-        $('#star-rate<%= review.id %>').raty({
-          size      : 36,
-          starOff   : '<%= asset_path('star-off.png') %>',
-          starOn    : '<%= asset_path('star-on.png') %>',
-          half      : false,
-          readOnly: true,
-          score: <%= review.star %>,
-        });
-      </script>
-      <%= link_to "削除", submission_review_path(review.submission, review), method: :delete %>
-    </div>
-  <% end %>
-
-<!--コメント投稿-->
-  <%= form_with model: [@submission, @review] do |f| %>
-    <div>
-      <div>
-        <%= f.text_field :comment %>
-      </div>
-
-      <div>
-        <%= f.submit 'コメントする' %>
-      </div>
-
-      <div class="form-group row" id="star">
-        <label>評価：</label>
-        <%= f.hidden_field :star, id: :review_star %>
-      </div>
-
-  <!-- 評価javascript -->
-      <script>
-        $('#star').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-
-          scoreName: 'comment[star]',
-          half: false,
-        });
-      </script>  
-    </div>
-  <% end %>
-</main>
-
-
+</div>
