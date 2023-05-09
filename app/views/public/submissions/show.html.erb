@@ -15,75 +15,83 @@
       
         <div class="container py-3 mx-5">
           
-            <div class="">
-                <label for="">商品名</label>
-                <%= @submission.name %>
-            </div>
-          
-            <div>
-                <% if @submission.favorited_by?(current_customer) %>
-                  <div>
-                    <%= link_to submission_favorites_path(@submission), method: :delete do %>
-                    ♥<%= @submission.favorites.count %>
-                    <% end %>
-                  </div>
-                <% else %>
-                  <div>
-                    <%= link_to submission_favorites_path(@submission), method: :post do %>
-                    ♡<%= @submission.favorites.count %>
-                    <% end %>
-                  </div>
-                <% end %>
-            </div>
-          
-            <div class="">
-                <%= image_tag @submission.get_image(400,400) %>
-            </div>
+            <div class="row">
+                <div class="col-5 px-2">   
+                    <%= image_tag @submission.get_image(400,400) %>
+                </div> 
+                
+                <div class="col-7">
+                    <div class="row">
+                        <h5><strong><%= @submission.name %></strong></h5>
+                    
+                        <div class="ml-3">
+                            <% if @submission.favorited_by?(current_customer) %>
+                              <div class="h5">
+                                <%= link_to submission_favorites_path(@submission), method: :delete do %>
+                                ♥<%= @submission.favorites.count %>
+                                <% end %>
+                              </div>
+                            <% else %>
+                              <div class="h5">
+                                <%= link_to submission_favorites_path(@submission), method: :post do %>
+                                ♡<%= @submission.favorites.count %>
+                                <% end %>
+                              </div>
+                            <% end %>
+                        </div>
+                    </div>
+                    
+                    <div class="">
+                        ジャンル：
+                        <% if @submission.genre_id == 1 %>
+                          歯ブラシ
+                        <% elsif @submission.genre_id == 2 %>
+                          歯磨き粉
+                        <% elsif @submission.genre_id == 3 %>
+                          補助的清掃用具
+                        <% elsif @submission.genre_id == 4 %>
+                          洗口液
+                        <% elsif @submission.genre_id == 5 %>
+                          ホワイトニング用品
+                        <% else @submission.genre_id == 6 %>
+                          口臭ケア用品
+                        <% end %>
+                    </div>
             
-            <div class="">
-                <label for="">ジャンル</label>
-                <% if @submission.genre_id == 1 %>
-                  歯ブラシ
-                <% elsif @submission.genre_id == 2 %>
-                  歯磨き粉
-                <% elsif @submission.genre_id == 3 %>
-                  補助的清掃用具
-                <% elsif @submission.genre_id == 4 %>
-                  洗口液
-                <% elsif @submission.genre_id == 5 %>
-                  ホワイトニング用品
-                <% else @submission.genre_id == 6 %>
-                  口臭ケア用品
-                <% end %>
-            </div>
-            
-            <div class="">
-                <label for="">値段</label>
-                <%= @submission.price %>
-            </div>
-            
-            <div class="">
-                <label for="">説明</label>
-                <%= @submission.introduction %>
-            </div>
-            
-            <div>
-                <% if @submission.customer == current_customer %>
-                <%= link_to "編集する", edit_submission_path(@submission.id) %>,
-                <%= link_to "削除する", destroy_submission_path(@submission.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-                <% end %>
-            </div>
+                    <div class="">
+                        <label for="">値段</label>
+                        ¥<%= @submission.price %>
+                    </div>
+                    
+                    <div class="">
+                        <label for="">説明</label>
+                        <%= @submission.introduction %>
+                    </div>
+                    
+                    <div>
+                        <% if @submission.customer == current_customer %>
+                            <%= link_to edit_submission_path(@submission.id) do %>
+                            <button type="button" class="btn btn-secondary">編集する</button>
+                            <% end %>
+                        
+                            <%= link_to destroy_submission_path(@submission.id), method: :delete do %>
+                            <button type="button" class="btn btn-secondary ml-3">削除する</button>
+                            <% end %>
+                        <% end %>
+                    </div>
       
-            <div class="">
-                <%= image_tag @submission.customer.get_profile_image(100,100) %>
-            </div>
-              
-            <div class="">
-                <%= @submission.customer.name %>
-            </div>
-            
-            <div class="">
-                <%= @submission.created_at.strftime('%Y/%m/%d') %>
+                    <div class="">
+                        <%= image_tag @submission.customer.get_profile_image(100,100) %>
+                    </div>
+                      
+                    <div class="">
+                        <%= @submission.customer.name %>
+                    </div>
+                    
+                    <div class="">
+                        <%= @submission.created_at.strftime('%Y/%m/%d') %>
+                    </div>
+                </div>
             </div>
         </div>
           
