@@ -1,90 +1,89 @@
 <div class="row">
     
     <!--カテゴリ-->
-    <div class="col-3">
+    <div class="col-3 ml-1">
         <%= render 'category' %>
     </div>
     
     
-    <div class="col-9">
+    <div class="col-8">
+      
       <div class="my-3">
-        <h3 class="pb-3 text-secondary">投稿詳細</h3>
+        <h3 class="text-secondary">投稿詳細</h3>
       <div>
 
-        <div>
-          <ul>
-            <li class="">
-              <label for="">商品名</label>
-              <%= @submission.name %>
-            </li>
+      <div>
+          <div class="">
+            <label for="">商品名</label>
+            <%= @submission.name %>
+          </div>
+          
+          <div>
+            <% if @submission.favorited_by?(current_customer) %>
+              <div>
+                <%= link_to submission_favorites_path(@submission), method: :delete do %>
+                  ♥<%= @submission.favorites.count %>
+                <% end %>
+              </div>
+              <% else %>
+              <div>
+                <%= link_to submission_favorites_path(@submission), method: :post do %>
+                  ♡<%= @submission.favorites.count %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          
+          <div class="">
+            <%= image_tag @submission.get_image(400,400) %>
+          </div>
+          
+          <div class="">
+            <label for="">ジャンル</label>
+            <% if @submission.genre_id == 1 %>
+              歯ブラシ
+            <% elsif @submission.genre_id == 2 %>
+              歯磨き粉
+            <% elsif @submission.genre_id == 3 %>
+              補助的清掃用具
+            <% elsif @submission.genre_id == 4 %>
+              洗口液
+            <% elsif @submission.genre_id == 5 %>
+              ホワイトニング用品
+            <% else @submission.genre_id == 6 %>
+              口臭ケア用品
+            <% end %>
+          </div>
+          
+          <div class="">
+            <label for="">値段</label>
+            <%= @submission.price %>
+          </div>
+          
+          <div class="">
+            <label for="">説明</label>
+            <%= @submission.introduction %>
+          </div>
+          
+          <div>
+            <% if @submission.customer == current_customer %>
+            <%= link_to "編集する", edit_submission_path(@submission.id) %>,
+            <%= link_to "削除する", destroy_submission_path(@submission.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            <% end %>
+          </li>
+    
+          <div class="">
+            <%= image_tag @submission.customer.get_profile_image(100,100) %>
+          </div>
             
-            <li>
-              <% if @submission.favorited_by?(current_customer) %>
-                <p>
-                  <%= link_to submission_favorites_path(@submission), method: :delete do %>
-                    ♥<%= @submission.favorites.count %>
-                  <% end %>
-                </p>
-                <% else %>
-                <p>
-                  <%= link_to submission_favorites_path(@submission), method: :post do %>
-                    ♡<%= @submission.favorites.count %>
-                  <% end %>
-                </p>
-              <% end %>
-            </li>
-            
-            <li class="">
-              <%= image_tag @submission.get_image(400,400) %>
-            </li>
-            
-            <li class="">
-              <label for="">ジャンル</label>
-              <% if @submission.genre_id == 1 %>
-                歯ブラシ
-              <% elsif @submission.genre_id == 2 %>
-                歯磨き粉
-              <% elsif @submission.genre_id == 3 %>
-                補助的清掃用具
-              <% elsif @submission.genre_id == 4 %>
-                洗口液
-              <% elsif @submission.genre_id == 5 %>
-                ホワイトニング用品
-              <% else @submission.genre_id == 6 %>
-                口臭ケア用品
-              <% end %>
-            </li>
-            
-            <li class="">
-              <label for="">値段</label>
-              <%= @submission.price %>
-            </li>
-            
-            <li class="">
-              <label for="">説明</label>
-              <%= @submission.introduction %>
-            </li>
-            
-            <li>
-              <% if @submission.customer == current_customer %>
-              <%= link_to "編集する", edit_submission_path(@submission.id) %>,
-              <%= link_to "削除する", destroy_submission_path(@submission.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-              <% end %>
-            </li>
-      
-            <li class="">
-              <%= image_tag @submission.customer.get_profile_image(100,100) %>
-            </li>
-              
-            <li class="">
-              <%= @submission.customer.name %>
-            </li>
-            
-            <li class="">
-              <%= @submission.created_at.strftime('%Y/%m/%d') %>
-            </li>
-          </ul>
-        </div>
+          <div class="">
+            <%= @submission.customer.name %>
+          </div>
+          
+          <div class="">
+            <%= @submission.created_at.strftime('%Y/%m/%d') %>
+          </div>
+      </div>
           
         
       <!--コメント-->

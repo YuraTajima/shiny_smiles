@@ -1,32 +1,35 @@
 <div class="row">
     
     <!--カテゴリ-->
-    <div class="col-3">
+    <div class="col-3 ml-1">
         <%= render 'category' %>
     </div>
     
     
-    <div class="col-9">
+    <div class="col-8">
       
-      <div class="my-3">
-        <h3 class="pb-3 text-secondary">洗口液の投稿一覧</h3>
-      <div>
-
-        <div>
-            <% @submissions.each do |submission| %>
-              <% if submission.genre_id == 4 %>
-              <ul>
-                <li class="">
-                  <%= image_tag submission.get_image(400,400) %>
-                </li>
+        <div class="mt-3">
+          <h3 class="text-secondary">洗口液の投稿一覧</h3>
+        </div>
+          
+        <div class="container py-3 mx-5">
+        <% @submissions.each do |submission| %>
+          <% if submission.genre_id == 4 %>
+            <%= link_to show_submission_path(submission.id) do %>
+            <div class="row border border-dark mb-3 pt-3">
+              <div class="col-4">
+                <p class="">
+                  <%= image_tag submission.get_image(150,150) %>
+                </p>
+              </div>
+              
+              <div class="col-8">
+                <p class="h5 text-dark">
+                  <strong><%= submission.name %></strong>
+                </p>
                 
-                <li class="">
-                  <label for="">商品名</label>
-                  <%= submission.name %>
-                </li>
-                
-                <li class="">
-                  <label for="">ジャンル</label>
+                <p class="text-dark text-right">
+                  カテゴリ：
                   <% if submission.genre_id == 1 %>
                     歯ブラシ
                   <% elsif submission.genre_id == 2 %>
@@ -40,17 +43,19 @@
                   <% else submission.genre_id == 6 %>
                     口臭ケア用品
                   <% end %>
-                </li>
+                </p>
                 
-                <li>
-                  <%= link_to "詳細", show_submission_path(submission.id) %>
-                </li>
-              </ul>
-              <% end %>
+                <p class="text-dark text-right">
+                  <%= submission.created_at.strftime('%Y/%m/%d') %>
+                </p>
+                
+              </div>
+            </div>
             <% end %>
+          <% end %>
+        <% end %>
         </div>
     </div>
     
 </div>
-    
-    
+
