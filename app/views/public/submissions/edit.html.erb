@@ -9,36 +9,46 @@
     <div class="col-8">
         
         <div class="my-3">
-          <h3 class="pb-3 text-secondary">投稿編集</h3>
+          <h3 class="pb-3 text-secondary"><strong>投稿編集</strong></h3>
         <div>
 
-        <div>
+        <div class="px-5">
             <%= form_with model: @submission, url: update_submission_path do |f| %>
-                <ul>
-                    <li class="">
-                        <label for="">画像<label>
-                        <%= f.file_field :image, accept: "image/*" %>
-                    </li>
-                    <li class="">
-                        <label for="">商品名</label>
-                        <%= f.text_field :name %>
-                    </li>
-                    <li class="">
-                        <label for="">ジャンル</label>
-                        <%= f.select :genre_id, [['歯ブラシ',1], ['歯磨き粉',2], ['補助的清掃用具',3], ['洗口液',4], ['ホワイトニング用品',5], ['口臭ケア用品',6]] %>
-                    </li>
-                    <li class="">
-                        <label for="">値段</label>
-                        <%= f.text_field :price %>円
-                    </li>
-                    <li class="">
-                        <label for="">説明</label>
-                        <%= f.text_area :introduction %>
-                    </li>
-                    <li>
-                        <%= f.submit '編集' %>
-                    </li>
-                </ul>
+            <div>
+                <div class="mb-3">
+                    <p>
+                        画像 <br> <%= f.file_field :image, accept: "image/*" %>
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <p>
+                        商品名 <br> <%= f.text_field :name %>
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <p>
+                        ジャンル <br> <%= f.select :genre_id, [['歯ブラシ',1], ['歯磨き粉',2], ['補助的清掃用具',3], ['洗口液',4], ['ホワイトニング用品',5], ['口臭ケア用品',6]] %>
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <p>
+                        値段 <br> <%= f.text_field :price %>円
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <p>
+                        説明 <br> <%= f.text_area :introduction %>
+                    </p>
+                </div>
+                
+                <div class="px-5">
+                    <%= f.submit '編集' %>
+                </div>
+            </div>
             <% end %>
         </div>
     </div>
