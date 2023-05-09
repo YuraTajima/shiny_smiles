@@ -7,8 +7,11 @@
     
     
     <div class="col-9">
-        <h3>ホワイトニング用品</h3>
-    
+      
+      <div class="my-3">
+        <h3 class="pb-3 text-secondary">ホワイトニング用品の投稿一覧</h3>
+      <div>
+
         <div>
             <% @submissions.each do |submission| %>
               <% if submission.genre_id == 5 %>

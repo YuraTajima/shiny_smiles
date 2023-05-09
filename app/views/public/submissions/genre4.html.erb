@@ -7,8 +7,11 @@
     
     
     <div class="col-9">
-        <h3>洗口液</h3>
-    
+      
+      <div class="my-3">
+        <h3 class="pb-3 text-secondary">洗口液の投稿一覧</h3>
+      <div>
+
         <div>
             <% @submissions.each do |submission| %>
               <% if submission.genre_id == 4 %>

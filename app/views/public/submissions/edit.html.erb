@@ -7,8 +7,11 @@
     
     
     <div class="col-9">
-        <h3>投稿編集</h3>
-    
+        
+        <div class="my-3">
+          <h3 class="pb-3 text-secondary">投稿編集</h3>
+        <div>
+
         <div>
             <%= form_with model: @submission, url: update_submission_path do |f| %>
                 <ul>
@@ -33,7 +36,7 @@
                         <%= f.text_area :introduction %>
                     </li>
                     <li>
-                        <%= f.submit '編集する' %>
+                        <%= f.submit '編集' %>
                     </li>
                 </ul>
             <% end %>

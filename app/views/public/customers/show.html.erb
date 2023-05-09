@@ -1,24 +1,13 @@
-<main>
-    
-    <h3>マイページ</h3>
+<h3 class="py-3 px-4 text-secondary">マイページ</h3>
 
-    <div>
-        <%= image_tag @customer.get_profile_image(100,100) %>
-        <ul>
-            <li>
-                <label>ニックネーム</label>
-                <%= @customer.name %>
-            </li>
-            <li>
-                <label>メールアドレス</label>
-                <%= @customer.email %>
-            </li>
-        </ul>
+    <div class="bg-secondary">
+        <p><%= image_tag @customer.get_profile_image(400,400) %></p>
+        <p><%= @customer.name %></p>
+        <p><%= @customer.email %></p>
         <p><%= link_to "プロフィール編集", edit_customer_path %></p>
     </div>
-    
-    
-    <h3>投稿履歴</h3>
+
+<h3 class="py-3 px-4 text-secondary">投稿履歴</h3>
 
     <div>
       <% @submissions.each do |submission| %>
@@ -39,5 +28,3 @@
         </ul>
       <% end %>
     </div>
-
-</main>
