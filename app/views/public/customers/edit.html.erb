@@ -1,27 +1,38 @@
-<h3 class="py-3 px-4 text-secondary">プロフィール編集</h3>
+<div class="row">
+    
+    <!--カテゴリ-->
+    <div class="col-3">
+        <%= render 'public/submissions/category' %>
+    </div>
+    
+    
+    <div class="col-9">
+        <h3 class="py-3 px-4 text-secondary">プロフィール編集</h3>
 
-<div>
-    <%= form_with model: @customer, url: update_customer_path(@customer.id), method: :patch do |f| %>
-    <ul>
-        <li>
-            <label>プロフィール画像</label>
-            <%= f.file_field :profile_image, accept: "image/*" %>
-        </li>
-        <li>
-            <label>名前</label>
-            <%= f.text_field :name %>
-        </li>
-        <li>
-            <label>メールアドレス</label>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </li>
-        <li>
-            <label>パスワード</label>
-            <%= f.password_field :password, autocomplete: "current-password" %>
-        </li>
-        <li>
-            <%= f.submit "変更を保存" %>
-        </li>
-    </ul>
-    <% end %>
+        <div>
+            <%= form_with model: @customer, url: update_customer_path(@customer.id), method: :patch do |f| %>
+            <ul>
+                <li>
+                    <label>プロフィール画像</label>
+                    <%= f.file_field :profile_image, accept: "image/*" %>
+                </li>
+                <li>
+                    <label>名前</label>
+                    <%= f.text_field :name %>
+                </li>
+                <li>
+                    <label>メールアドレス</label>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                </li>
+                <li>
+                    <label>パスワード</label>
+                    <%= f.password_field :password, autocomplete: "current-password" %>
+                </li>
+                <li>
+                    <%= f.submit "変更を保存" %>
+                </li>
+            </ul>
+            <% end %>
+        </div>
+    </div>
 </div>

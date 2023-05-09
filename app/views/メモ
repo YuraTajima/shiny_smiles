@@ -1,0 +1,20 @@
+<div class="row">
+    
+    <!--カテゴリ-->
+    <div class="col-3">
+        <%= render 'public/submissions/category' %>
+    </div>
+    
+    
+    <div class="col-9">
+        
+        <div class="my-3">
+            <h3 class="pb-3 text-secondary">投稿</h3>
+        <div>
+
+        <div class="">
+          
+        </div>
+    </div>
+
+</div>
