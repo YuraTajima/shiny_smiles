@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   #submissions
   get "/submissions/new" => "public/submissions#new", as: "new_submission"
   get "/submissions" => "public/submissions#index", as: "index_submission"
+  get "/submissions/search" => "public/submissions#search", as: "search"
   get "/submissions/:id" => "public/submissions#show", as: "show_submission"
   get "/submissions/:id/edit" => "public/submissions#edit", as: "edit_submission"
   post "/submissions" => "public/submissions#create", as: "create_submission"

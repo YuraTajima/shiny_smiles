@@ -17,6 +17,10 @@ class Submission < ApplicationRecord
     end
     
     def favorited_by?(customer)
-      favorites.exists?(customer_id: customer.id)
+      favorites.exists?(customer_id: customer_id)
+    end
+    
+    def self.search(keyword)
+        where(["name like? OR introduction like?", "%#{keyword}%", "%#{keyword}%"])
     end
 end

@@ -22,6 +22,12 @@ class Public::SubmissionsController < ApplicationController
   def edit
     @submission = Submission.find(params[:id])
   end
+  
+  def search
+    @submissions = Submission.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "search"
+  end
 
   def create
     @submission = Submission.new(submission_params)
