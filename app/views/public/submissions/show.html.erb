@@ -5,14 +5,13 @@
         <%= render 'category' %>
     </div>
     
-    
-    
+    <!--詳細-->
     <div class="col-8">
       
         <div class="my-3">
             <h3 class="text-secondary"><strong>投稿詳細</strong></h3>
         </div>
-      
+        
         <div class="container py-3 mx-5">
           
             <div class="row">
@@ -42,6 +41,16 @@
                     </div>
                     
                     <div class="">
+                        <label for="">値段：</label>
+                        ¥<%= @submission.price %>
+                    </div>
+                    
+                    <div class="">
+                        <label for="">説明：</label>
+                        <%= @submission.introduction %>
+                    </div>
+                    
+                    <div class="text-right">
                         ジャンル：
                         <% if @submission.genre_id == 1 %>
                           歯ブラシ
@@ -57,18 +66,14 @@
                           口臭ケア用品
                         <% end %>
                     </div>
-            
-                    <div class="">
-                        <label for="">値段</label>
-                        ¥<%= @submission.price %>
+                    
+                    <div class="text-right">
+                        <%= image_tag @submission.customer.get_profile_image(70,70) %>
+                        <%= @submission.customer.name %>
+                        <%= @submission.created_at.strftime('%Y/%m/%d') %>
                     </div>
                     
-                    <div class="">
-                        <label for="">説明</label>
-                        <%= @submission.introduction %>
-                    </div>
-                    
-                    <div>
+                    <div class="text-right">
                         <% if @submission.customer == current_customer %>
                             <%= link_to edit_submission_path(@submission.id) do %>
                             <button type="button" class="btn btn-secondary">編集する</button>
@@ -80,47 +85,40 @@
                         <% end %>
                     </div>
       
-                    <div class="">
-                        <%= image_tag @submission.customer.get_profile_image(100,100) %>
-                    </div>
-                      
-                    <div class="">
-                        <%= @submission.customer.name %>
-                    </div>
-                    
-                    <div class="">
-                        <%= @submission.created_at.strftime('%Y/%m/%d') %>
-                    </div>
                 </div>
             </div>
         </div>
           
           
-          
+         <!--コメント-->
         <div class="container py-3 mx-5">
-            <!--コメント-->
-            <p>コメント件数：<%= @submission.reviews.count %></p>
-            <% @submission.reviews.each do |review| %>
-            <div>
-                <p><%= review.customer.name %></p>
-                <p>コメント:<%= review.comment %></p>
-                <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
-                <%= link_to "削除", public_submission_review_path(review.submission, review), method: :delete %>
-            </div>
-            <% end %>
+
+            <p><strong>コメント（<%= @submission.reviews.count %>）</strong></p>
             
-            <!--コメント投稿-->
-            <%= form_with model: [@submission, @review] do |f| %>
-            <div>
-                <div>
-                    <%= f.text_field :comment %>
-                </div>
-      
-                <div>
-                    <%= f.submit 'コメントする' %>
+            <div class="row">
+            <% @submission.reviews.each do |review| %>
+            <div class="col-10 mx-auto border border-dark mb-3 py-3 px-3">
+                <div class""><%= review.comment %></div>
+                <div class="text-right">
+                    <span><%= image_tag @submission.customer.get_profile_image(50,50) %></span>
+                    <span><%= review.customer.name %></span>
+                    <span><%= review.created_at.strftime('%Y/%m/%d') %></span>
+                    <span>
+                        <%= link_to "削除", public_submission_review_path(review.submission, review), method: :delete %>
+                    </span>
                 </div>
             </div>
             <% end %>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                <%= form_with model: [:public,@submission, @review] do |f| %>
+                    <%= f.text_field :comment %>
+                    <%= f.submit 'コメント' %>
+                <% end %>
+                </div>
+            </div>
             
         </div>
       
