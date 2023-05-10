@@ -8,7 +8,7 @@ class Public::FavoritesController < ApplicationController
   end
 
   def destroy
-    submission = Submission.find(params[submission_id])
+    submission = Submission.find(params[:submission_id])
     favorite = current_customer.favorites.find_by(submission_id: submission.id)
     favorite.destroy
     redirect_to public_submission_path(submission)

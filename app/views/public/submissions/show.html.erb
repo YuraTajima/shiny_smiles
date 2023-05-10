@@ -99,29 +99,28 @@
           
         <div class="container py-3 mx-5">
             <!--コメント-->
+            <p>コメント件数：<%= @submission.reviews.count %></p>
             <% @submission.reviews.each do |review| %>
             <div>
                 <p><%= review.customer.name %></p>
                 <p>コメント:<%= review.comment %></p>
                 <p><%= review.created_at.strftime('%Y/%m/%d') %></p>
-                <p>評価 :<%= review.star %>点</p>
-                <div id="star-rate<%= review.id %>"></div>    
-                <script>
-                    $('#star-rate<%= review.id %>').raty({
-                      size      : 36,
-                      starOff   : '<%= asset_path('star-off.png') %>',
-                      starOn    : '<%= asset_path('star-on.png') %>',
-                      half      : false,
-                      readOnly: true,
-                      score: <%= review.star %>,
-                    });
-                </script>
                 <%= link_to "削除", public_submission_review_path(review.submission, review), method: :delete %>
             </div>
             <% end %>
             
             <!--コメント投稿-->
-            
+            <%= form_with model: [@submission, @review] do |f| %>
+            <div>
+                <div>
+                    <%= f.text_field :comment %>
+                </div>
+      
+                <div>
+                    <%= f.submit 'コメントする' %>
+                </div>
+            </div>
+            <% end %>
             
         </div>
       
