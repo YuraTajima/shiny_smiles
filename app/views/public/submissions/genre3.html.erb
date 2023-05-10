@@ -15,7 +15,7 @@
         <div class="container py-3 mx-5">
         <% @submissions.each do |submission| %>
           <% if submission.genre_id == 3 %>
-            <%= link_to show_submission_path(submission.id) do %>
+            <%= link_to public_submission_path(submission.id) do %>
             <div class="row border border-dark mb-3 pt-3">
               <div class="col-4">
                 <p class="">

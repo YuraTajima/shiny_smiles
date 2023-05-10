@@ -44,21 +44,23 @@ Rails.application.routes.draw do
   get "/submissions/new" => "public/submissions#new", as: "new_submission"
   get "/submissions" => "public/submissions#index", as: "index_submission"
   get "/submissions/search" => "public/submissions#search", as: "search"
-  get "/submissions/:id" => "public/submissions#show", as: "show_submission"
+  # get "/submissions/:id" => "public/submissions#show", as: "show_submission"
+  namespace :public do
+    resources :submissions, only: [:show] do
+      resource :favorites, only: [:create, :destroy]
+      resources :reviews, only: [:create, :destroy]
+    end
+  end
+
   get "/submissions/:id/edit" => "public/submissions#edit", as: "edit_submission"
   post "/submissions" => "public/submissions#create", as: "create_submission"
   patch "/submissions/:id" => "public/submissions#update", as: "update_submission"
   delete "/submissions/:id" => "public/submissions#destroy", as: "destroy_submission"
   
-  #reviews
-  resources :submissions, only: [:index, :show, :create] do
-    resource :favorites, only: [:create, :destroy]
-    resources :reviews, only: [:create, :destroy]
-  end
-
   #customers
   get "/customers/:id" => "public/customers#show", as: "show_customer"
   get "/customers/:id/edit" => "public/customers#edit", as: "edit_customer"
   patch "/customers/:id" => "public/customers#update", as: "update_customer"
+  
   
 end
