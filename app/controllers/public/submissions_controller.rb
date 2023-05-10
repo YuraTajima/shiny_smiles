@@ -5,7 +5,7 @@ class Public::SubmissionsController < ApplicationController
   end
 
   def index
-    @submissions = Submission.all
+    @submissions = Submission.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def show
@@ -31,8 +31,11 @@ class Public::SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
     @submission.customer_id = current_customer.id
-    @submission.save
-    redirect_to index_submission_path
+    if @submission.save
+      redirect_to index_submission_path
+    else
+      render :new
+    end
   end
 
   def update
@@ -53,7 +56,7 @@ class Public::SubmissionsController < ApplicationController
   
 #歯ブラシ
   def genre1
-    @submissions = Submission.all
+    @submissions = Submission.order(created_at: :desc)
   end
   
 #歯磨き粉
