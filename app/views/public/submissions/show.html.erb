@@ -53,17 +53,17 @@
                     <div class="text-right">
                         ジャンル：
                         <% if @submission.genre_id == 1 %>
-                          歯ブラシ
+                          <%= link_to("歯ブラシ", submission_genre1_path, {class: "text-dark"}) %>
                         <% elsif @submission.genre_id == 2 %>
-                          歯磨き粉
+                          <%= link_to("歯磨き粉", submission_genre2_path, {class: "text-dark"}) %>
                         <% elsif @submission.genre_id == 3 %>
-                          補助的清掃用具
+                          <%= link_to("補助的清掃用具", submission_genre3_path, {class: "text-dark"}) %>
                         <% elsif @submission.genre_id == 4 %>
-                          洗口液
+                          <%= link_to("洗口液", submission_genre4_path, {class: "text-dark"}) %>
                         <% elsif @submission.genre_id == 5 %>
-                          ホワイトニング用品
+                          <%= link_to("ホワイトニング用品", submission_genre5_path, {class: "text-dark"}) %>
                         <% else @submission.genre_id == 6 %>
-                          口臭ケア用品
+                          <%= link_to("口臭ケア用品", submission_genre6_path, {class: "text-dark"}) %>
                         <% end %>
                     </div>
                     
@@ -103,9 +103,11 @@
                     <span><%= image_tag @submission.customer.get_profile_image(50,50) %></span>
                     <span><%= review.customer.name %></span>
                     <span><%= review.created_at.strftime('%Y/%m/%d') %></span>
+                    <% if review.customer == current_customer %>
                     <span>
                         <%= link_to "削除", public_submission_review_path(review.submission, review), method: :delete %>
                     </span>
+                    <% end %>
                 </div>
             </div>
             <% end %>

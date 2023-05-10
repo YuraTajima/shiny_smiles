@@ -61,27 +61,27 @@ class Public::SubmissionsController < ApplicationController
   
 #歯磨き粉
   def genre2
-    @submissions = Submission.all
+    @submissions = Submission.order(created_at: :desc)
   end
   
 #補助的清掃用具
   def genre3
-    @submissions = Submission.all
+    @submissions = Submission.order(created_at: :desc)
   end
   
 #洗口液
   def genre4
-    @submissions = Submission.all
+    @submissions = Submission.order(created_at: :desc)
   end
   
 #ホワイトニング用品
   def genre5
-    @submissions = Submission.all
+    @submissions = Submission.order(created_at: :desc)
   end
   
 #口臭ケア用品
   def genre6
-    @submissions = Submission.all
+    @submissions = Submission.order(created_at: :desc)
   end
   
   private
