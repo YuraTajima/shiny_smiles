@@ -26,7 +26,7 @@ class Public::SubmissionsController < ApplicationController
   def search
     @submissions = Submission.search(params[:keyword])
     @keyword = params[:keyword]
-    render "search"
+    render "index"
   end
 
   def create
