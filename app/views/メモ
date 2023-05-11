@@ -1,24 +1,5 @@
-
-                          new_submission GET    /submissions/new(.:format)                                                                        public/submissions#new
-                        index_submission GET    /submissions(.:format)                                                                            public/submissions#index
-                                  search GET    /submissions/search(.:format)                                                                     public/submissions#search
-                                  
-                                  
-                                  
-             public_submission_favorites DELETE /public/submissions/:submission_id/favorites(.:format)                                            public/favorites#destroy
-                                         POST   /public/submissions/:submission_id/favorites(.:format)                                            public/favorites#create
-                                         
-               public_submission_reviews POST   /public/submissions/:submission_id/reviews(.:format)                                              public/reviews#create
-                public_submission_review DELETE /public/submissions/:submission_id/reviews/:id(.:format)                                          public/reviews#destroy
-                
-                       public_submission GET    /public/submissions/:id(.:format)                                                                 public/submissions#show
-                       
-                       
-                       
-                         edit_submission GET    /submissions/:id/edit(.:format)                                                                   public/submissions#edit
-                       create_submission POST   /submissions(.:format)                                                                            public/submissions#create
-                       update_submission PATCH  /submissions/:id(.:format)                                                                        public/submissions#update
-                      destroy_submission DELETE /submissions/:id(.:format)                                                                        public/submissions#destroy
-                      
-                      
-                      
+なんのデータがはっいてるか
+                            <p>current_customer <%= current_customer.inspect %> </p>
+                            <p>@submission <%= @submission.inspect %> </p>
+                            <p>@submission.favorites <%= @submission.favorites.inspect %> </p>
+                            <p>@submission.favorited_by? <%= @submission.favorited_by?(current_customer).inspect %> </p>

@@ -20,7 +20,8 @@ class Submission < ApplicationRecord
     end
     
     def favorited_by?(customer)
-      favorites.exists?(customer_id: customer_id)
+        #byebug
+      favorites.exists?(customer_id: customer.id)
     end
     
     def self.search(keyword)

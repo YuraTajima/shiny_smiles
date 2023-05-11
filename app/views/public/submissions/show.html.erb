@@ -27,13 +27,13 @@
                             <% if @submission.favorited_by?(current_customer) %>
                               <div class="h5">
                                 <%= link_to public_submission_favorites_path(@submission), method: :delete do %>
-                                ♥<%= @submission.favorites.count %>
+                                  <p class="text-danger">♥<%= @submission.favorites.count %></p>
                                 <% end %>
                               </div>
                             <% else %>
                               <div class="h5">
                                 <%= link_to public_submission_favorites_path(@submission), method: :post do %>
-                                ♡<%= @submission.favorites.count %>
+                                  <p class="text-danger">♡<%= @submission.favorites.count %></p>
                                 <% end %>
                               </div>
                             <% end %>
