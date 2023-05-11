@@ -49,6 +49,14 @@
                   <%= submission.created_at.strftime('%Y/%m/%d') %>
                 </p>
                 
+                <p>
+                  <div class="text-dark text-right">
+                    <%= image_tag submission.customer.get_profile_image(50,50) %>
+                    <%= submission.customer.name %>
+                  </div>
+                </p>
+                
+                
               </div>
             </div>
             <% end %>

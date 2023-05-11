@@ -21,10 +21,10 @@
                 
                 <div class="col-7">
                     <div class="row">
-                        <h5><strong><%= @submission.name %></strong></h5>
+                        <h5 class="col-9"><strong><%= @submission.name %></strong></h5>
                     
                         <% if current_customer %>
-                        <div class="ml-3">
+                        <div class="col-3">
                             <% if @submission.favorited_by?(current_customer) %>
                               <div class="h5">
                                 <%= link_to public_submission_favorites_path(@submission), method: :delete do %>
@@ -40,41 +40,50 @@
                             <% end %>
                         </div>
                         <% else %>
-                            <span class="ml-3 text-danger">♥<%= @submission.favorited_customers.count %></span>
+                            <span class="h5 ml-3 text-danger">♥<%= @submission.favorited_customers.count %></span>
                         <% end %>
                     </div>
                     
-                    <div class="">
-                        <label for="">値段：</label>
-                        ¥<%= @submission.price %>
-                    </div>
-                    
-                    <div class="">
-                        <label for="">説明：</label>
-                        <%= @submission.introduction %>
-                    </div>
-                    
-                    <div class="text-right">
-                        ジャンル：
-                        <% if @submission.genre_id == 1 %>
-                          <%= link_to("歯ブラシ", submission_genre1_path, {class: "text-dark"}) %>
-                        <% elsif @submission.genre_id == 2 %>
-                          <%= link_to("歯磨き粉", submission_genre2_path, {class: "text-dark"}) %>
-                        <% elsif @submission.genre_id == 3 %>
-                          <%= link_to("補助的清掃用具", submission_genre3_path, {class: "text-dark"}) %>
-                        <% elsif @submission.genre_id == 4 %>
-                          <%= link_to("洗口液", submission_genre4_path, {class: "text-dark"}) %>
-                        <% elsif @submission.genre_id == 5 %>
-                          <%= link_to("ホワイトニング用品", submission_genre5_path, {class: "text-dark"}) %>
-                        <% else @submission.genre_id == 6 %>
-                          <%= link_to("口臭ケア用品", submission_genre6_path, {class: "text-dark"}) %>
-                        <% end %>
+                    <div>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><p class="text-right">ジャンル：</p></td>
+                                    <td>
+                                        <p class="ml-2">
+                                        <% if @submission.genre_id == 1 %>
+                                          <%= link_to("歯ブラシ", submission_genre1_path, {class: "text-dark"}) %>
+                                        <% elsif @submission.genre_id == 2 %>
+                                          <%= link_to("歯磨き粉", submission_genre2_path, {class: "text-dark"}) %>
+                                        <% elsif @submission.genre_id == 3 %>
+                                          <%= link_to("補助的清掃用具", submission_genre3_path, {class: "text-dark"}) %>
+                                        <% elsif @submission.genre_id == 4 %>
+                                          <%= link_to("洗口液", submission_genre4_path, {class: "text-dark"}) %>
+                                        <% elsif @submission.genre_id == 5 %>
+                                          <%= link_to("ホワイトニング用品", submission_genre5_path, {class: "text-dark"}) %>
+                                        <% else @submission.genre_id == 6 %>
+                                          <%= link_to("口臭ケア用品", submission_genre6_path, {class: "text-dark"}) %>
+                                        <% end %>
+                                        </p>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td><p class="text-right">値段：</p></td>
+                                    <td><p class="ml-2">¥<%= @submission.price %></p></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td><p class="text-right">説明：</p></td>
+                                    <td><p class="ml-2"><%= @submission.introduction %></p></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     
                     <div class="text-right">
                         <%= image_tag @submission.customer.get_profile_image(70,70) %>
                         <%= @submission.customer.name %>
-                        <%= @submission.created_at.strftime('%Y/%m/%d') %>
                     </div>
                     
                     <div class="text-right">
@@ -88,7 +97,11 @@
                             <% end %>
                         <% end %>
                     </div>
-      
+                      
+                    <div class="text-right">
+                        <%= @submission.created_at.strftime('%Y/%m/%d') %>
+                    </div>
+                    
                 </div>
             </div>
         </div>
