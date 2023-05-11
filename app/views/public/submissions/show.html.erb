@@ -132,10 +132,12 @@
 
             <div class="row">
                 <div class="col-12 text-center">
-                <%= form_with model: [:public,@submission, @review] do |f| %>
-                    <%= f.text_field :comment %>
-                    <%= f.submit 'コメント' %>
-                <% end %>
+                    <% if current_customer %>
+                        <%= form_with model: [:public,@submission, @review] do |f| %>
+                            <%= f.text_field :comment %>
+                            <%= f.submit 'コメント' %>
+                        <% end %>
+                    <% end %>
                 </div>
             </div>
             

@@ -45,7 +45,8 @@
               </p>
               
               <p class="text-dark text-right">
-                <span class="mr-2">（♥<%= submission.favorited_customers.count %>）</span><%= submission.created_at.strftime('%Y/%m/%d') %>
+                <span class="mr-2">♥（<%= submission.favorited_customers.count %>）</span>
+                コメント（<%= submission.reviews.count %>）
               </p>
               
               <p>
