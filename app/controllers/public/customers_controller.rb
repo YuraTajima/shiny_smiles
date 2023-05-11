@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
   
   def update
     @customer = current_customer
-    if @customer.update(customer_session)
+    if @customer.update(customer_params)
       redirect_to show_customer_path(@customer.id)
     else
       render :edit
@@ -21,7 +21,7 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:user).permit(:name, :profile_image, :email)
+    params.require(:customer).permit(:name, :profile_image, :email)
   end
 
 end
