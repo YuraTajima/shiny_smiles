@@ -34,7 +34,7 @@ class Public::SubmissionsController < ApplicationController
     if @submission.save
       redirect_to index_submission_path
     else
-      render "new"
+      render :new
     end
   end
 

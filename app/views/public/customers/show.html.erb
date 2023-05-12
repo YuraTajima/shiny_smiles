@@ -13,22 +13,32 @@
         </div>
         
         <div class="row">
-            <div class="col-4">
+            <div class="col-6">
                 <p class=""><%= image_tag @customer.get_profile_image(400,400) %></p>
             </div>
             
-            <div class="col-4">
-                <p><%= @customer.name %></p>
-                <p><%= @customer.email %></p>
+            <div class="col-6 my-auto">
+              <table class="table text-center border">
+                <tbody>
+                  <tr>
+                    <th class="border-right">NAME</th>
+                    <th><%= @customer.name %></th>
+                  </tr>
+                  
+                  <tr>
+                    <th class="border-right">MAIL</th>
+                    <th><%= @customer.email %></th>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              <p class="text-center">
+                <%= link_to edit_customer_path do %>
+                  <button type="button" class="btn btn-secondary">プロフィール編集</button>
+                <% end %>
+              </p>
             </div>
             
-            <div class="col-4">
-                <p>
-                    <%= link_to edit_customer_path do %>
-                    <button type="button" class="btn btn-secondary">プロフィール編集</button>
-                    <% end %>
-                </p>
-            </div>
         </div>
         
         <div class="mt-3">
