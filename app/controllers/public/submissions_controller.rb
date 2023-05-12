@@ -34,7 +34,7 @@ class Public::SubmissionsController < ApplicationController
     if @submission.save
       redirect_to index_submission_path
     else
-      render :new
+      render "new"
     end
   end
 
@@ -43,7 +43,7 @@ class Public::SubmissionsController < ApplicationController
     if @submission.update(submission_params)
       redirect_to public_submission_path(@submission.id)
     else
-      render :edit
+      render "edit"
     end
   end
   

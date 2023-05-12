@@ -3,3 +3,5 @@
                             <p>@submission <%= @submission.inspect %> </p>
                             <p>@submission.favorites <%= @submission.favorites.inspect %> </p>
                             <p>@submission.favorited_by? <%= @submission.favorited_by?(current_customer).inspect %> </p>
+                            
+                            
