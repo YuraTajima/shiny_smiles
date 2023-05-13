@@ -13,7 +13,7 @@
           <div class="row border border-dark mb-3 pt-3">
             <div class="col-4">
               <p class="">
-                <%= image_tag submission.get_image(150,150) %>
+                <%= image_tag submission.get_image(100,100) %>
               </p>
             </div>
             
@@ -22,25 +22,15 @@
                 <strong><%= submission.name %></strong>
               </p>
               
-              <p class="text-dark text-right">
-                カテゴリ：
-                <% if submission.genre_id == 1 %>
-                  歯ブラシ
-                <% elsif submission.genre_id == 2 %>
-                  歯磨き粉
-                <% elsif submission.genre_id == 3 %>
-                  補助的清掃用具
-                <% elsif submission.genre_id == 4 %>
-                  洗口液
-                <% elsif submission.genre_id == 5 %>
-                  ホワイトニング用品
-                <% else submission.genre_id == 6 %>
-                  口臭ケア用品
-                <% end %>
+              <p class="ml-3 text-dark">
+                <strong><%= submission.introduction %></strong>
               </p>
               
-              <p class="text-dark text-right">
-                <%= submission.created_at.strftime('%Y/%m/%d') %>
+              <p>
+                <div class="text-dark text-right">
+                  <%= image_tag submission.customer.get_profile_image(30,30) %>
+                  <%= submission.customer.name %>
+                </div>
               </p>
               
             </div>
