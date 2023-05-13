@@ -11,11 +11,8 @@ class Public::CustomersController < ApplicationController
   
   def update
     @customer = current_customer
-    if @customer.update(customer_params)
-      redirect_to show_customer_path(@customer.id)
-    else
-      render :edit
-    end
+    @customer.update(customer_params)
+    redirect_to show_customer_path(@customer.id)
   end
 
   private

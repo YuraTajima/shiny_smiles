@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :customers, only: [:index, :create, :show, :edit, :update]
-    resources :submissions, only: [:index, :new, :create, :show, :edit, :update]
-    resources :reviews, only: [:index, :new, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :submissions, only: [:index, :show, :edit, :update]
+    resources :reviews, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     root to: "homes#top"
   end
