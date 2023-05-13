@@ -14,12 +14,16 @@ class Admin::SubmissionsController < ApplicationController
   def update
     @submission = Submission.find(params[:id])
     @submission.update(submission_params)
-    redirect_to submission_path(@submission.id)
+    redirect_to admin_submission_path(@submission.id)
   end
   
   def destroy
     @submission = Submission.find(params[:id])
     @submission.destroy
-    redirect_to submissions_path
+    redirect_to admin_submissions_path
+  end
+  
+  def submission_params
+    params.require(:submission).permit(:name, :image, :genre_id, :price, :introduction)
   end
 end

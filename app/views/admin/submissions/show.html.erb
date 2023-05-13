@@ -1,0 +1,109 @@
+<div class="container">
+    
+    <div class="col-12">
+      
+        <div class="my-3">
+            <h3 class="text-secondary"><strong>投稿詳細</strong></h3>
+        </div>
+        
+        <div class="container py-3 mx-5">
+          
+            <div class="row">
+                <div class="col-5 px-2">   
+                    <%= image_tag @submission.get_image(400,400) %>
+                </div> 
+                
+                <div class="col-7">
+                    <div class="row mb-5">
+                        <h5 class="col-9"><strong><%= @submission.name %></strong></h5>
+                        
+                        <span class="h5 ml-3 text-danger">♥<%= @submission.favorited_customers.count %></span>
+                    </div>
+                    
+                    <div class="ml-3">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><p class="text-right">ジャンル：</p></td>
+                                    <td>
+                                        <p class="ml-2">
+                                        <% if @submission.genre_id == 1 %>
+                                          歯ブラシ
+                                        <% elsif @submission.genre_id == 2 %>
+                                          歯磨き粉
+                                        <% elsif @submission.genre_id == 3 %>
+                                          補助的清掃用具
+                                        <% elsif @submission.genre_id == 4 %>
+                                          洗口液
+                                        <% elsif @submission.genre_id == 5 %>
+                                          ホワイトニング用品
+                                        <% else @submission.genre_id == 6 %>
+                                          口臭ケア用品
+                                        <% end %>
+                                        </p>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td><p class="text-right">値段：</p></td>
+                                    <td><p class="ml-2">¥<%= @submission.price %></p></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td><p class="text-right">説明：</p></td>
+                                    <td><p class="ml-2"><%= @submission.introduction %></p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="text-right">
+                        <%= image_tag @submission.customer.get_profile_image(70,70) %>
+                        <%= @submission.customer.name %>
+                    </div>
+                    
+                    <div class="text-right">
+                            <%= link_to edit_admin_submission_path(@submission.id) do %>
+                            <button type="button" class="btn btn-secondary">編集する</button>
+                            <% end %>
+                        
+                            <%= link_to admin_submission_path(@submission.id), method: :delete do %>
+                            <button type="button" class="btn btn-secondary">削除する</button>
+                            <% end %>
+                    </div>
+                      
+                    <div class="text-right">
+                        <%= @submission.created_at.strftime('%Y/%m/%d') %>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+          
+          
+         <!--コメント-->
+        <div class="container py-3 mx-5">
+
+            <p><strong>コメント（<%= @submission.reviews.count %>）</strong></p>
+            
+            <div class="row">
+            <% @submission.reviews.each do |review| %>
+            <div class="col-10 mx-auto border border-dark mb-3 py-3 px-3">
+                <div class""><%= review.comment %></div>
+                <div class="text-right">
+                    <span><%= image_tag @submission.customer.get_profile_image(50,50) %></span>
+                    <span><%= review.customer.name %></span>
+                    <span><%= review.created_at.strftime('%Y/%m/%d') %></span>
+                    <span>
+                        <%= link_to "削除", admin_submission_review_path(review.submission, review), method: :delete %>
+                    </span>
+                </div>
+            </div>
+            <% end %>
+            </div>
+
+        </div>
+      
+    </div>
+    
+</div>

@@ -17,10 +17,11 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :submissions, only: [:index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :edit, :update]
+    resources :submissions, only: [:index, :show, :edit, :update, :destroy] do
+      resources :reviews, only: [:create, :destroy]
+    end
+    resources :reviews, only: [:index, :show, :edit, :update, :destroy]
     resources :genres, only: [:index, :create, :edit, :update]
-    root to: "homes#top"
   end
   
   #homes
@@ -50,6 +51,12 @@ Rails.application.routes.draw do
     resources :submissions, only: [:show] do
       resource :favorites, only: [:create, :destroy]
       resources :reviews, only: [:create, :destroy]
+    end
+    
+    resources :customers, only: [] do
+      member do
+        get :favorites
+      end
     end
   end
 

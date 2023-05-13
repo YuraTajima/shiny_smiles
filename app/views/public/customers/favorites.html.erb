@@ -3,17 +3,17 @@
     <div class="col-12">
       
         <div class="row">
-          <div class="mt-3">
-            <h3 class="text-secondary"><strong>投稿一覧</strong></h3>
+          <div class="my-3">
+            <h3 class="text-secondary"><strong>いいね一覧</strong></h3>
           </div>
           
         <div class="container pb-3 mx-5">
-        <% @submissions.each do |submission| %>
-          <%= link_to admin_submission_path(submission.id) do %>
+          <% @favorite_submissions.each do |submission|%>
+          <%= link_to public_submission_path(submission.id) do %>
           <div class="row border border-dark mb-3 pt-3">
             <div class="col-4">
               <p class="">
-                <%= image_tag submission.get_image(100,100) %>
+                <%= image_tag submission.get_image(150,150) %>
               </p>
             </div>
             
@@ -22,10 +22,23 @@
                 <strong><%= submission.name %></strong>
               </p>
               
-              <p class="ml-3 text-dark">
-                <strong><%= submission.introduction %></strong>
+              <p class="text-dark text-right">
+                カテゴリ：
+                <% if submission.genre_id == 1 %>
+                  歯ブラシ
+                <% elsif submission.genre_id == 2 %>
+                  歯磨き粉
+                <% elsif submission.genre_id == 3 %>
+                  補助的清掃用具
+                <% elsif submission.genre_id == 4 %>
+                  洗口液
+                <% elsif submission.genre_id == 5 %>
+                  ホワイトニング用品
+                <% else submission.genre_id == 6 %>
+                  口臭ケア用品
+                <% end %>
               </p>
-              
+
               <p class="text-dark text-right">
                 <span class="mr-2">♥（<%= submission.favorited_customers.count %>）</span>
                 コメント（<%= submission.reviews.count %>）
@@ -33,10 +46,11 @@
               
               <p>
                 <div class="text-dark text-right">
-                  <%= image_tag submission.customer.get_profile_image(30,30) %>
+                  <%= image_tag submission.customer.get_profile_image(50,50) %>
                   <%= submission.customer.name %>
                 </div>
               </p>
+              
               
             </div>
           </div>
@@ -44,10 +58,7 @@
         <% end %>
         </div>
         
-        <div class="mb-3 mx-5">
-              <%= paginate @submissions %>
-        </div>
-
     </div>
     
 </div>
+

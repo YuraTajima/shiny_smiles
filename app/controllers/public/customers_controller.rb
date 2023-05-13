@@ -5,6 +5,12 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @submissions = @customer.submissions
   end
+  
+  def favorites
+    @customer = Customer.find(params[:id])
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:submission_id)
+    @favorite_submissions = Submission.find(favorites)
+  end
 
   def edit
     @customer = current_customer

@@ -1,0 +1,52 @@
+<div class="container">
+   
+    <div class="col-12">
+      
+        <div class="my-3">
+            <h3 class="text-secondary"><strong>投稿編集</strong></h3>
+        </div>
+          
+        <div class="text-center">
+            <%= form_with model: @submission, url: admin_submission_path(@submission.id), method: :patch do |f| %>
+            <div>
+                <div class="mb-3">
+                    <p>
+                        画像 <br> <%= f.file_field :image, accept: "image/*" %>
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <p>
+                        商品名 <br> <%= f.text_field :name %>
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <p>
+                        ジャンル <br> <%= f.select :genre_id, [['歯ブラシ',1], ['歯磨き粉',2], ['補助的清掃用具',3], ['洗口液',4], ['ホワイトニング用品',5], ['口臭ケア用品',6]] %>
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <p>
+                        値段 <br> <%= f.text_field :price %>円
+                    </p>
+                </div>
+                
+                <div class="mb-3">
+                    <p>
+                        説明 <br> <%= f.text_area :introduction %>
+                    </p>
+                </div>
+                
+                <div class="mb-5">
+                    <%= f.submit '投稿' %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+        
+    </div>
+    
+</div>
+
