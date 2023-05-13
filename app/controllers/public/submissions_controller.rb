@@ -5,7 +5,11 @@ class Public::SubmissionsController < ApplicationController
   end
 
   def index
-    @submissions = Submission.order(created_at: :desc).page(params[:page]).per(5)
+    @submissions = Submission.order(created_at: :desc).page(params[:page]).per(10)
+  end
+  
+  def category
+     @submissions = Submission.all
   end
 
   def show
@@ -25,7 +29,7 @@ class Public::SubmissionsController < ApplicationController
   def search
     @submissions = Submission.search(params[:keyword])
     @keyword = params[:keyword]
-    render "index"
+    render "category"
   end
 
   def create

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   
   #submissions
   get "/submissions/new" => "public/submissions#new", as: "new_submission"
+  get "/submissions/category" => "public/submissions#category", as: "category_submission"
   get "/submissions" => "public/submissions#index", as: "index_submission"
   get "/submissions/search" => "public/submissions#search", as: "search"
   # get "/submissions/:id" => "public/submissions#show", as: "show_submission"
@@ -62,6 +63,6 @@ Rails.application.routes.draw do
   get "/customers/:id/edit" => "public/customers#edit", as: "edit_customer"
   patch "/customers/:id" => "public/customers#update", as: "update_customer"
   get "/customers/:id/unsubscribe" => "public/customers#unsubscribe", as: "unsubscribe_customer"
-  patch "/customers/:id/withdraw" => "public/customer#withdraw", as: "withdraw_customer"
+  patch "/customers/:id/withdraw" => "public/customers#withdraw", as: "withdraw_customer"
   
 end

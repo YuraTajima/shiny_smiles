@@ -13,13 +13,13 @@ class Admin::CustomersController < ApplicationController
   
   def update
     customer = Customer.find(params[:id])
-    customer.update(customer_params)
+    customer.update!(customer_params)
     redirect_to admin_customers_path(params[:id])
   end
   
   private
   
   def customer_params
-    params.require(:customer).permit(:image, :name, :email, :password)
+    params.require(:customer).permit(:image, :name, :email, :password, :is_deleted)
   end
 end

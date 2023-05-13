@@ -1,12 +1,6 @@
-<div class="row">
+<div class="container">
     
-    <!--カテゴリ-->
-    <div class="col-3 ml-1">
-        <%= render 'category' %>
-    </div>
-    
-    <!--詳細-->
-    <div class="col-8">
+    <div class="col-12">
       
         <div class="my-3">
             <h3 class="text-secondary"><strong>投稿詳細</strong></h3>
@@ -20,7 +14,7 @@
                 </div> 
                 
                 <div class="col-7">
-                    <div class="row">
+                    <div class="row mb-5">
                         <h5 class="col-9"><strong><%= @submission.name %></strong></h5>
                     
                         <% if current_customer %>
@@ -44,7 +38,7 @@
                         <% end %>
                     </div>
                     
-                    <div>
+                    <div class="ml-3">
                         <table>
                             <tbody>
                                 <tr>

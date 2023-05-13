@@ -1,18 +1,13 @@
-<div class="row">
-    
-    <!--カテゴリ-->
-    <div class="col-3 ml-1">
-        <%= render 'category' %>
-    </div>
-    
-    
-    <div class="col-8">
+<div class="container">
+   
+    <div class="col-12">
       
-        <div class="mt-3">
-          <h3 class="text-secondary"><strong>いいね数ランキング</strong></h3>
-        </div>
+        <div class="row">
+          <div class="my-3">
+            <h3 class="text-secondary"><strong>いいね数ランキング</strong></h3>
+          </div>
           
-        <div class="container py-3 mx-5">
+        <div class="container pb-3 mx-5">
         <% @submissions.each do |submission| %>
           <%= link_to public_submission_path(submission.id) do %>
           <div class="row border border-dark mb-3 pt-3">
@@ -43,7 +38,7 @@
                   口臭ケア用品
                 <% end %>
               </p>
-              
+
               <p class="text-dark text-right">
                 <span class="mr-2">♥（<%= submission.favorited_customers.count %>）</span>
                 コメント（<%= submission.reviews.count %>）
@@ -56,11 +51,16 @@
                 </div>
               </p>
               
+              
             </div>
           </div>
           <% end %>
         <% end %>
+        <div class="text-right mb-5">
+          <%= link_to("全ての投稿をみる＞", index_submission_path, {class: "text-dark"}) %>
         </div>
+        </div>
+        
     </div>
     
 </div>
