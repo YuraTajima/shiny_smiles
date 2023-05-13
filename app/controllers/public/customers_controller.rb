@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  
 
   def show
     @customer = current_customer
@@ -11,8 +12,21 @@ class Public::CustomersController < ApplicationController
   
   def update
     @customer = current_customer
-    @customer.update(customer_params)
+    if @customer.update(customer_params)
     redirect_to show_customer_path(@customer.id)
+    else
+    render :edit
+    end
+  end
+  
+  def unsubscribe
+  end
+  
+  def withdraw
+    @customer = Customer.find(current_customer.id)
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 
   private

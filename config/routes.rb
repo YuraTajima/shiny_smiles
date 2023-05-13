@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get "/customers/:id" => "public/customers#show", as: "show_customer"
   get "/customers/:id/edit" => "public/customers#edit", as: "edit_customer"
   patch "/customers/:id" => "public/customers#update", as: "update_customer"
-  
+  get "/customers/:id/unsubscribe" => "public/customers#unsubscribe", as: "unsubscribe_customer"
+  patch "/customers/:id/withdraw" => "public/customer#withdraw", as: "withdraw_customer"
   
 end

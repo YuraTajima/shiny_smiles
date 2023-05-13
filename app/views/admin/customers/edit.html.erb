@@ -33,11 +33,11 @@
                   
                   <div class="mb-3">
                       ステータス<br>
-                      <%= f.radio_button :is_deleted, "sale" %>
-                  <%= f.label :is_deleted, "有効" %>
+                      <%= f.radio_button :is_deleted, "false" %>
+                      <%= f.label :is_deleted, "有効" %>
                   
-                  <%= f.radio_button :is_deleted, "stop" %>
-                  <%= f.label :is_deleted, "退会" %>
+                      <%= f.radio_button :is_deleted, "true" %>
+                      <%= f.label :is_deleted, "退会" %>
                   </div>
                   
                   <div class="px-5 mb-5">
