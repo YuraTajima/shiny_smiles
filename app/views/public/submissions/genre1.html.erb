@@ -6,24 +6,7 @@
     <div class="container">
     <div class="row">    
         <div class="col-5">
-          <%= form_with url: search_path, method: :get, local: true do |f| %>
-            <%= f.text_field :keyword, value: @keyword %>
-            <%= f.submit "検索" %>
-          <% end %>
-        
-        <div class="mx-3">
-　          <h4 class="text-secondary"><strong>カテゴリ一覧</strong></h4>
-            <div class="mx-3">
-                <ul class="text-secondary">
-                    <li><%= link_to("歯ブラシ", submission_genre1_path, {class: "text-secondary"}) %></li>
-                    <li><%= link_to("歯磨き粉", submission_genre2_path, {class: "text-secondary"}) %></li>
-                    <li><%= link_to("補助的清掃用具", submission_genre3_path, {class: "text-secondary"}) %></li>
-                    <li><%= link_to("洗口液", submission_genre4_path, {class: "text-secondary"}) %></li>
-                    <li><%= link_to("ホワイトニング用品", submission_genre5_path, {class: "text-secondary"}) %></li>
-                    <li><%= link_to("口臭ケア用品", submission_genre6_path, {class: "text-secondary"}) %></li>
-                </ul>
-            </div>
-　        </div>    
+          <%= render 'search', keyword: @keyword %>
         </div>
         
         <div class="col-7">

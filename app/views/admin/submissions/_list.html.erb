@@ -1,0 +1,34 @@
+<% submissions.each do |submission| %>
+  <%= link_to admin_submission_path(submission.id) do %>
+  <div class="row border border-dark mb-3 pt-3">
+    <div class="col-4">
+      <p class="">
+        <%= image_tag submission.get_image(100,100) %>
+      </p>
+    </div>
+    
+    <div class="col-8">
+      <p class="h5 text-dark">
+        <strong><%= submission.name %></strong>
+      </p>
+      
+      <p class="ml-3 text-dark">
+        <strong><%= submission.introduction %></strong>
+      </p>
+      
+      <p class="text-dark text-right">
+        <span class="mr-2">♥（<%= submission.favorited_customers.count %>）</span>
+        コメント（<%= submission.reviews.count %>）
+      </p>
+      
+      <p>
+        <div class="text-dark text-right">
+          <%= image_tag submission.customer.get_profile_image(30,30) %>
+          <%= submission.customer.name %>
+        </div>
+      </p>
+      
+    </div>
+  </div>
+  <% end %>
+<% end %>
