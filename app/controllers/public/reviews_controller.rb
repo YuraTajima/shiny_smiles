@@ -4,8 +4,11 @@ class Public::ReviewsController < ApplicationController
     submission = Submission.find(params[:submission_id])
     review = current_customer.reviews.new(review_params)
     review.submission_id = submission.id
-    review.save
-    redirect_to public_submission_path(submission)
+    if review.save
+      redirect_to public_submission_path(submission)
+    else
+      redirect_to public_submission_path(submission)
+    end
   end
   
   def destroy
