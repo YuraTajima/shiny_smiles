@@ -57,32 +57,32 @@ class Public::SubmissionsController < ApplicationController
   
 #歯ブラシ
   def genre1
-    @submissions = Submission.order(created_at: :desc)
+    @submissions = Submission.where(genre_id:1)
   end
   
 #歯磨き粉
   def genre2
-    @submissions = Submission.order(created_at: :desc)
+    @submissions = Submission.where(genre_id:2)
   end
   
 #補助的清掃用具
   def genre3
-    @submissions = Submission.order(created_at: :desc)
+    @submissions = Submission.where(genre_id:3)
   end
   
 #洗口液
   def genre4
-    @submissions = Submission.order(created_at: :desc)
+    @submissions = Submission.where(genre_id:4)
   end
   
 #ホワイトニング用品
   def genre5
-    @submissions = Submission.order(created_at: :desc)
+    @submissions = Submission.where(genre_id:5)
   end
   
 #口臭ケア用品
   def genre6
-    @submissions = Submission.order(created_at: :desc)
+    @submissions = Submission.where(genre_id:6)
   end
   
   private
