@@ -44,8 +44,11 @@ class Public::SubmissionsController < ApplicationController
 
   def update
     @submission = Submission.find(params[:id])
-    @submission.update(submission_params)
-    redirect_to public_submission_path(@submission.id)
+    if @submission.update(submission_params)
+      redirect_to public_submission_path(@submission.id)
+    else
+      render :edit
+    end
   end
   
   def destroy

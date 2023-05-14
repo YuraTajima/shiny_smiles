@@ -29,7 +29,7 @@
                 
                 <div class="mb-3">
                     <p>
-                        値段 <br> <%= f.text_field :price %>円
+                        値段 <br> <span><%= f.text_field :price %>円</span>
                     </p>
                 </div>
                 
@@ -40,7 +40,7 @@
                 </div>
                 
                 <div class="mb-5">
-                    <%= f.submit '投稿' %>
+                    <%= f.submit '編集' %>
                 </div>
             </div>
             <% end %>
