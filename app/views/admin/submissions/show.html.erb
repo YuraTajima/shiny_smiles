@@ -58,8 +58,12 @@
                     </div>
                     
                     <div class="text-right">
-                        <%= image_tag @submission.customer.get_profile_image(70,70) %>
-                        <%= @submission.customer.name %>
+                        <%= link_to admin_customer_path(@submission.customer.id) do %>
+                        <div class="text-dark">
+                            <%= image_tag @submission.customer.get_profile_image(70,70) %>
+                            <%= @submission.customer.name %>
+                        </div>
+                        <% end %>
                     </div>
                     
                     <div class="text-right">
